@@ -1,0 +1,356 @@
+2025-07-08 15:54:43 | INFO | __main__ | Initializing Enhanced SQL Retriever Bot with LangChain...
+2025-07-08 15:54:43 | INFO | __main__ | Connecting to database...
+2025-07-08 15:54:43 | INFO | database.connection | Initializing sqlite database connection
+2025-07-08 15:54:43 | INFO | database.connection | Successfully connected to sqlite database
+2025-07-08 15:54:43 | INFO | __main__ | Initializing LangChain SQL client...
+2025-07-08 15:54:43 | INFO | llm.langchain_client | Initializing LangChain SQL client...
+2025-07-08 15:54:45 | WARNING | llm.langchain_client | VLLM not available: 1 validation error for VLLM
+  Value error, Invalid repository ID or local directory specified: ''.
+Please verify the following requirements:
+1. Provide a valid Hugging Face repository ID.
+2. Specify a local directory that contains a recognized configuration file.
+   - For Hugging Face models: ensure the presence of a 'config.json'.
+   - For Mistral models: ensure the presence of a 'params.json'.
+3. For GGUF: pass the local path of the GGUF checkpoint.
+   Loading GGUF from a remote repo directly is not yet supported.
+ [type=value_error, input_value=ArgsKwargs((), {'model': ...attention_dtype': None}), input_type=ArgsKwargs]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error, using fallback
+2025-07-08 15:54:45 | INFO | llm.langchain_client | SQL database connection initialized
+2025-07-08 15:54:45 | INFO | llm.langchain_client | Memory initialized: conversation_buffer_window
+2025-07-08 15:54:45 | INFO | llm.langchain_client | SQL agent and toolkit initialized
+2025-07-08 15:54:45 | INFO | llm.langchain_client | LangChain SQL client initialized successfully!
+2025-07-08 15:54:45 | INFO | __main__ | LangChain client initialized successfully!
+2025-07-08 15:54:45 | INFO | __main__ | Initializing few-shot prompt manager...
+2025-07-08 15:54:45 | INFO | __main__ | Few-shot prompt manager initialized!
+2025-07-08 15:54:45 | INFO | __main__ | Initializing VLLM client as fallback...
+2025-07-08 15:54:45 | INFO | llm.vllm_client | VLLM server not available: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f8aaae56db0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-08 15:54:45 | INFO | llm.vllm_client | VLLM server not available, using local transformers with CPU
+2025-07-08 15:54:45 | INFO | llm.vllm_client | Loading meta-llama/Llama-3.2-3B-Instruct locally for CPU inference...
+2025-07-08 15:54:56 | INFO | llm.vllm_client | Local model loaded successfully!
+2025-07-08 15:54:56 | INFO | __main__ | Initializing RAG client...
+2025-07-08 15:54:56 | INFO | llm.rag_client | Initializing RAG vector store...
+2025-07-08 15:54:56 | INFO | llm.rag_client | Loading embedding model: all-MiniLM-L6-v2
+2025-07-08 15:56:58 | INFO | llm.rag_client | Initializing ChromaDB...
+2025-07-08 15:56:59 | INFO | llm.rag_client | Created new collection: sql_examples
+2025-07-08 15:56:59 | INFO | llm.rag_client | Created new FAISS index with dimension 384
+2025-07-08 15:56:59 | INFO | llm.rag_client | RAG vector store initialized successfully!
+2025-07-08 15:56:59 | INFO | llm.rag_client | Loading default SQL examples...
+2025-07-08 15:56:59 | INFO | llm.rag_client | Loaded 7 default examples
+2025-07-08 15:56:59 | INFO | __main__ | RAG client initialized successfully!
+2025-07-08 15:56:59 | INFO | __main__ | Enhanced SQL Retriever Bot initialized successfully!
+2025-07-08 16:02:10 | INFO | __main__ | Processing query with enhanced methods: show me all artists...
+2025-07-08 16:02:10 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:02:10 | INFO | llm.rag_client | Generated SQL using RAG: SELECT * FROM Artist;...
+2025-07-08 16:02:10 | INFO | llm.rag_client | Learned new example: show me all artists...
+2025-07-08 16:02:26 | INFO | __main__ | Processing query with enhanced methods: how many tracks are there...
+2025-07-08 16:02:26 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:02:26 | INFO | llm.rag_client | Generated SQL using RAG: SELECT COUNT(*) FROM Track;...
+2025-07-08 16:02:26 | INFO | llm.rag_client | Learned new example: how many tracks are there...
+2025-07-08 16:02:36 | INFO | __main__ | Processing query with enhanced methods: show me all artists...
+2025-07-08 16:02:36 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:02:36 | INFO | llm.rag_client | Generated SQL using RAG: SELECT * FROM Artist;...
+2025-07-08 16:02:36 | INFO | llm.rag_client | Learned new example: show me all artists...
+2025-07-08 16:04:25 | INFO | __main__ | Processing query with enhanced methods: Show employees and their managers...
+2025-07-08 16:04:25 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:04:25 | WARNING | llm.rag_client | No similar examples found for: Show employees and their managers
+2025-07-08 16:04:45 | INFO | __main__ | Processing query with enhanced methods: Find customers who spent more than $40...
+2025-07-08 16:04:45 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:04:45 | INFO | llm.rag_client | Generated SQL using RAG: SELECT Customer.FirstName, Customer.LastName, SUM(Invoice.Total) as TotalSpent FROM Customer JOIN In...
+2025-07-08 16:04:45 | INFO | llm.rag_client | Learned new example: Find customers who spent more than $40...
+2025-07-08 16:05:27 | INFO | __main__ | Processing query with enhanced methods: List invoices from 2009...
+2025-07-08 16:05:27 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:05:27 | WARNING | llm.rag_client | No similar examples found for: List invoices from 2009
+2025-07-08 16:05:53 | INFO | database.connection | Database connection closed
+2025-07-08 16:05:53 | INFO | llm.langchain_client | LangChain SQL client closed
+2025-07-08 16:05:53 | INFO | llm.vllm_client | Model resources cleaned up
+2025-07-08 16:05:53 | INFO | __main__ | Enhanced SQL Retriever Bot closed
+2025-07-08 16:14:20 | INFO | __main__ | Initializing Enhanced SQL Retriever Bot with LangChain...
+2025-07-08 16:14:20 | INFO | __main__ | Connecting to database...
+2025-07-08 16:14:20 | INFO | database.connection | Initializing sqlite database connection
+2025-07-08 16:14:20 | INFO | database.connection | Successfully connected to sqlite database
+2025-07-08 16:14:20 | INFO | __main__ | Initializing LangChain SQL client...
+2025-07-08 16:14:20 | INFO | llm.langchain_client | Initializing LangChain SQL client...
+2025-07-08 16:14:22 | WARNING | llm.langchain_client | VLLM not available: 1 validation error for VLLM
+  Value error, Invalid repository ID or local directory specified: ''.
+Please verify the following requirements:
+1. Provide a valid Hugging Face repository ID.
+2. Specify a local directory that contains a recognized configuration file.
+   - For Hugging Face models: ensure the presence of a 'config.json'.
+   - For Mistral models: ensure the presence of a 'params.json'.
+3. For GGUF: pass the local path of the GGUF checkpoint.
+   Loading GGUF from a remote repo directly is not yet supported.
+ [type=value_error, input_value=ArgsKwargs((), {'model': ...attention_dtype': None}), input_type=ArgsKwargs]
+    For further information visit https://errors.pydantic.dev/2.11/v/value_error, using fallback
+2025-07-08 16:14:22 | INFO | llm.langchain_client | SQL database connection initialized
+2025-07-08 16:14:22 | INFO | llm.langchain_client | Memory initialized: conversation_buffer_window
+2025-07-08 16:14:22 | INFO | llm.langchain_client | SQL agent and toolkit initialized
+2025-07-08 16:14:22 | INFO | llm.langchain_client | LangChain SQL client initialized successfully!
+2025-07-08 16:14:22 | INFO | __main__ | LangChain client initialized successfully!
+2025-07-08 16:14:22 | INFO | __main__ | Initializing few-shot prompt manager...
+2025-07-08 16:14:22 | INFO | __main__ | Few-shot prompt manager initialized!
+2025-07-08 16:14:22 | INFO | __main__ | Initializing VLLM client as fallback...
+2025-07-08 16:14:22 | INFO | llm.vllm_client | VLLM server not available: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa2d4275ca0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-08 16:14:22 | INFO | llm.vllm_client | VLLM server not available, using local transformers with CPU
+2025-07-08 16:14:22 | INFO | llm.vllm_client | Loading meta-llama/Llama-3.2-3B-Instruct locally for CPU inference...
+2025-07-08 16:14:32 | INFO | llm.vllm_client | Local model loaded successfully!
+2025-07-08 16:14:32 | INFO | __main__ | Initializing RAG client...
+2025-07-08 16:14:32 | INFO | llm.rag_client | Initializing RAG vector store...
+2025-07-08 16:14:32 | INFO | llm.rag_client | Loading embedding model: all-MiniLM-L6-v2
+2025-07-08 16:14:40 | INFO | llm.rag_client | Initializing ChromaDB...
+2025-07-08 16:14:40 | INFO | llm.rag_client | Loaded existing collection: sql_examples
+2025-07-08 16:14:40 | INFO | llm.rag_client | Created new FAISS index with dimension 384
+2025-07-08 16:14:40 | INFO | llm.rag_client | RAG vector store initialized successfully!
+2025-07-08 16:14:40 | INFO | llm.rag_client | Loading LLM model: unsloth/Llama-3.2-3B-Instruct
+2025-07-08 16:20:40 | INFO | llm.rag_client | LLM initialized successfully
+2025-07-08 16:20:40 | INFO | llm.rag_client | Loading default SQL examples...
+2025-07-08 16:20:40 | INFO | llm.rag_client | Loaded 7 default examples
+2025-07-08 16:20:40 | INFO | __main__ | RAG client initialized successfully!
+2025-07-08 16:20:40 | INFO | __main__ | Enhanced SQL Retriever Bot initialized successfully!
+2025-07-08 16:21:42 | INFO | __main__ | Processing query with enhanced methods: show me all artists...
+2025-07-08 16:21:42 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:21:42 | ERROR | llm.rag_client | LLM SQL generation failed: name 'torch' is not defined
+2025-07-08 16:21:42 | INFO | llm.rag_client | Generated SQL using RAG: SELECT * FROM Artist;...
+2025-07-08 16:21:42 | INFO | llm.rag_client | Learned new example: show me all artists...
+2025-07-08 16:21:55 | INFO | __main__ | Processing query with enhanced methods: find customers from canada...
+2025-07-08 16:21:55 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:21:55 | ERROR | llm.rag_client | LLM SQL generation failed: name 'torch' is not defined
+2025-07-08 16:21:55 | INFO | llm.rag_client | Generated SQL using RAG: SELECT * FROM Customer WHERE Country = 'USA';...
+2025-07-08 16:21:55 | INFO | llm.rag_client | Learned new example: find customers from canada...
+2025-07-08 16:22:05 | INFO | __main__ | Processing query with enhanced methods: find customers from canada...
+2025-07-08 16:22:05 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:22:05 | ERROR | llm.rag_client | LLM SQL generation failed: name 'torch' is not defined
+2025-07-08 16:22:05 | INFO | llm.rag_client | Generated SQL using RAG: SELECT * FROM Customer WHERE Country = 'USA';...
+2025-07-08 16:22:05 | INFO | llm.rag_client | Learned new example: find customers from canada...
+2025-07-08 16:22:20 | INFO | __main__ | Processing query with enhanced methods: which artist has the most albums?...
+2025-07-08 16:22:20 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:22:20 | ERROR | llm.rag_client | LLM SQL generation failed: name 'torch' is not defined
+2025-07-08 16:22:20 | INFO | llm.rag_client | Generated SQL using RAG: SELECT Artist.Name, Album.Title FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId ORDER BY ...
+2025-07-08 16:22:20 | INFO | llm.rag_client | Learned new example: which artist has the most albums?...
+2025-07-08 16:24:43 | INFO | __main__ | Processing query with enhanced methods: find the most expensive track...
+2025-07-08 16:24:43 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:24:43 | WARNING | llm.rag_client | No similar examples found for: find the most expensive track
+2025-07-08 16:27:45 | INFO | __main__ | Processing query with enhanced methods: find the most expensive album...
+2025-07-08 16:27:45 | INFO | __main__ | Processing with RAG...
+2025-07-08 16:27:45 | ERROR | llm.rag_client | LLM SQL generation failed: name 'torch' is not defined
+2025-07-08 16:27:45 | INFO | llm.rag_client | Generated SQL using RAG: SELECT Artist.Name, Album.Title FROM Artist JOIN Album ON Artist.ArtistId = Album.ArtistId ORDER BY ...
+2025-07-08 16:27:45 | INFO | llm.rag_client | Learned new example: find the most expensive album...
+2025-07-08 16:29:52 | INFO | database.connection | Database connection closed
+2025-07-08 16:29:52 | INFO | llm.langchain_client | LangChain SQL client closed
+2025-07-08 16:29:52 | INFO | llm.vllm_client | Model resources cleaned up
+2025-07-08 16:29:52 | INFO | __main__ | Enhanced SQL Retriever Bot closed
+2025-07-08 17:37:23 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-08 17:37:23 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-08 17:37:23 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:37:23 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-08 17:37:39 | INFO | __main__ | ✅ RAG client initialized
+2025-07-08 17:37:39 | INFO | __main__ | 
+================================================================================
+2025-07-08 17:37:39 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-08 17:37:39 | INFO | __main__ | ================================================================================
+2025-07-08 17:37:39 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:37:39 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-08 17:37:39 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-08 17:37:39 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-08 17:37:39 | INFO | __main__ |    
+2025-07-08 17:37:39 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-08 17:37:39 | INFO | __main__ |    Key business entities:
+2025-07-08 17:37:39 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-08 17:37:39 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-08 17:37:39 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-08 17:37:39 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-08 17:37:39 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-08 17:37:39 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-08 17:37:39 | INFO | __main__ |    
+2025-07-08 17:37:39 | INFO | __main__ |    ... (truncated)
+2025-07-08 17:37:39 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-08 17:37:39 | INFO | __main__ | ================================================================================
+2025-07-08 17:37:39 | INFO | __main__ | 
+🔍 Processing Query #1: Show me all customers
+2025-07-08 17:37:39 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:37:39 | INFO | __main__ | 
+🔍 Processing Query #2: Find customers from USA
+2025-07-08 17:37:39 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:37:39 | INFO | __main__ | 
+🔍 Processing Query #3: List all products with their prices
+2025-07-08 17:37:39 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:37:39 | INFO | __main__ | 
+🔍 Processing Query #4: Show employees and their managers
+2025-07-08 17:37:39 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:37:39 | INFO | __main__ | 
+🔍 Processing Query #5: Find the most expensive product
+2025-07-08 17:37:39 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:37:39 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-08 17:40:59 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-08 17:40:59 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-08 17:40:59 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:40:59 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-08 17:41:12 | INFO | __main__ | ✅ RAG client initialized
+2025-07-08 17:41:12 | INFO | __main__ | 
+================================================================================
+2025-07-08 17:41:12 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-08 17:41:12 | INFO | __main__ | ================================================================================
+2025-07-08 17:41:12 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:41:12 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-08 17:41:12 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-08 17:41:12 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-08 17:41:12 | INFO | __main__ |    
+2025-07-08 17:41:12 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-08 17:41:12 | INFO | __main__ |    Key business entities:
+2025-07-08 17:41:12 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-08 17:41:12 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-08 17:41:12 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-08 17:41:12 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-08 17:41:12 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-08 17:41:12 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-08 17:41:12 | INFO | __main__ |    
+2025-07-08 17:41:12 | INFO | __main__ |    ... (truncated)
+2025-07-08 17:41:12 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-08 17:41:12 | INFO | __main__ | ================================================================================
+2025-07-08 17:41:12 | INFO | __main__ | 
+🔍 Processing Query #1: Show me all customers
+2025-07-08 17:41:12 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:41:21 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, country FROM customers ORDER BY customerName;
+2025-07-08 17:41:21 | INFO | __main__ | ✅ Query completed: 14 results in 9.060s
+2025-07-08 17:41:21 | ERROR | __main__ | ❌ Application error: 'ResponseFormatter' object has no attribute 'format_table_data'
+2025-07-08 17:42:42 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-08 17:42:42 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-08 17:42:42 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:42:42 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-08 17:42:55 | INFO | __main__ | ✅ RAG client initialized
+2025-07-08 17:42:55 | INFO | __main__ | 
+================================================================================
+2025-07-08 17:42:55 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-08 17:42:55 | INFO | __main__ | ================================================================================
+2025-07-08 17:42:55 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:42:55 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-08 17:42:55 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-08 17:42:55 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-08 17:42:55 | INFO | __main__ |    
+2025-07-08 17:42:55 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-08 17:42:55 | INFO | __main__ |    Key business entities:
+2025-07-08 17:42:55 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-08 17:42:55 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-08 17:42:55 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-08 17:42:55 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-08 17:42:55 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-08 17:42:55 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-08 17:42:55 | INFO | __main__ |    
+2025-07-08 17:42:55 | INFO | __main__ |    ... (truncated)
+2025-07-08 17:42:55 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-08 17:42:55 | INFO | __main__ | ================================================================================
+2025-07-08 17:42:55 | INFO | __main__ | 
+🔍 Processing Query #1: Show me all customers
+2025-07-08 17:42:55 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:43:05 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, country FROM customers ORDER BY customerName;
+2025-07-08 17:43:05 | INFO | __main__ | ✅ Query completed: 14 results in 9.951s
+2025-07-08 17:43:05 | INFO | __main__ | 
+🔍 Processing Query #2: Find customers from USA
+2025-07-08 17:43:05 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:43:15 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, state FROM customers WHERE country = 'USA';
+2025-07-08 17:43:15 | INFO | __main__ | ✅ Query completed: 4 results in 9.262s
+2025-07-08 17:43:15 | INFO | __main__ | 
+🔍 Processing Query #3: List all products with their prices
+2025-07-08 17:43:15 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:43:22 | INFO | __main__ | 📊 Executing SQL: SELECT productCode, productName, buyPrice, MSRP FROM products;
+2025-07-08 17:43:22 | INFO | __main__ | ✅ Query completed: 5 results in 6.886s
+2025-07-08 17:43:22 | INFO | __main__ | 
+🔍 Processing Query #4: Show employees and their managers
+2025-07-08 17:43:22 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:43:46 | INFO | __main__ | 📊 Executing SQL: SELECT e.employeeNumber, e.firstName, e.lastName, e.jobTitle, m.firstName as managerFirstName, m.lastName as managerLastName FROM employees e LEFT JOIN employees m ON e.reportsTo = m.employeeNumber ORDER BY e.lastName;
+2025-07-08 17:43:46 | INFO | __main__ | ✅ Query completed: 23 results in 24.642s
+2025-07-08 17:43:46 | INFO | __main__ | 
+🔍 Processing Query #5: Find the most expensive product
+2025-07-08 17:43:46 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:43:58 | INFO | __main__ | 📊 Executing SQL: SELECT MAX(MSRP) FROM products);
+2025-07-08 17:43:58 | ERROR | __main__ | ❌ Query processing failed: near ")": syntax error
+2025-07-08 17:43:58 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-08 17:45:47 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-08 17:45:47 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-08 17:45:47 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:45:47 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-08 17:45:58 | INFO | __main__ | ✅ RAG client initialized
+2025-07-08 17:45:58 | INFO | __main__ | 
+================================================================================
+2025-07-08 17:45:58 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-08 17:45:58 | INFO | __main__ | ================================================================================
+2025-07-08 17:45:58 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:45:58 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-08 17:45:58 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-08 17:45:58 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-08 17:45:58 | INFO | __main__ |    
+2025-07-08 17:45:58 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-08 17:45:58 | INFO | __main__ |    Key business entities:
+2025-07-08 17:45:58 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-08 17:45:58 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-08 17:45:58 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-08 17:45:58 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-08 17:45:58 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-08 17:45:58 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-08 17:45:58 | INFO | __main__ |    
+2025-07-08 17:45:58 | INFO | __main__ |    ... (truncated)
+2025-07-08 17:45:58 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-08 17:45:58 | INFO | __main__ | ================================================================================
+2025-07-08 17:46:41 | INFO | __main__ | 
+🔍 Processing Query #1: show me all customers
+2025-07-08 17:46:41 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:46:48 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, country FROM customers ORDER BY customerName;
+2025-07-08 17:46:48 | INFO | __main__ | ✅ Query completed: 14 results in 7.667s
+2025-07-08 17:47:08 | INFO | __main__ | 
+🔍 Processing Query #2: find customers from USA
+2025-07-08 17:47:08 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:47:16 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, state FROM customers WHERE country = 'USA';
+2025-07-08 17:47:16 | INFO | __main__ | ✅ Query completed: 4 results in 7.797s
+2025-07-08 17:47:32 | INFO | __main__ | 
+🔍 Processing Query #3: count number of customers
+2025-07-08 17:47:32 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:49:27 | INFO | __main__ | 
+🔍 Processing Query #4: how many unique states are there from USA in customer table
+2025-07-08 17:49:27 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:49:29 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-08 17:54:44 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-08 17:54:44 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-08 17:54:44 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:54:44 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-08 17:54:57 | INFO | __main__ | ✅ RAG client initialized
+2025-07-08 17:54:57 | INFO | __main__ | 
+================================================================================
+2025-07-08 17:54:57 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-08 17:54:57 | INFO | __main__ | ================================================================================
+2025-07-08 17:54:57 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-08 17:54:57 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-08 17:54:57 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-08 17:54:57 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-08 17:54:57 | INFO | __main__ |    
+2025-07-08 17:54:57 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-08 17:54:57 | INFO | __main__ |    Key business entities:
+2025-07-08 17:54:57 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-08 17:54:57 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-08 17:54:57 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-08 17:54:57 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-08 17:54:57 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-08 17:54:57 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-08 17:54:57 | INFO | __main__ |    
+2025-07-08 17:54:57 | INFO | __main__ |    ... (truncated)
+2025-07-08 17:54:57 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-08 17:54:57 | INFO | __main__ | ================================================================================
+2025-07-08 17:56:00 | INFO | __main__ | 
+🔍 Processing Query #1: count numbers of customers
+2025-07-08 17:56:00 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:56:05 | INFO | __main__ | 📊 Executing SQL: SELECT COUNT(*) as total_customers FROM customers;
+2025-07-08 17:56:05 | INFO | __main__ | ✅ Query completed: 1 results in 5.419s
+2025-07-08 17:56:33 | INFO | __main__ | 
+🔍 Processing Query #2: average product price
+2025-07-08 17:56:33 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-08 17:56:39 | INFO | __main__ | 📊 Executing SQL: SELECT AVG(MSRP) as average_price FROM products;
+2025-07-08 17:56:39 | INFO | __main__ | ✅ Query completed: 1 results in 5.740s
+2025-07-08 17:57:21 | INFO | __main__ | 🧹 Cleanup completed
