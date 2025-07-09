@@ -27,7 +27,7 @@ except ImportError:
     torch = None
 
 from config import (
-    RAG_VECTOR_STORE_PATH, RAG_SIMILARITY_THRESHOLD, RAG_MAX_EXAMPLES,
+    RAG_VECTOR_STORE_PATH, RAG_SIMILARITY_THRESHOLD, RAG_RELAXED_THRESHOLD, RAG_MAX_EXAMPLES,
     MODEL_NAME, MODEL_TEMPERATURE, MAX_TOKENS, CRM_BUSINESS_CONTEXT
 )
 
@@ -335,6 +335,56 @@ class RAGVectorStore:
                 category="filtering",
                 difficulty="easy",
                 tables_used=["products"]
+            ),
+            
+            # SQLite-specific DATE operations with STRFTIME
+            SQLExample(
+                question="What's the total revenue generated this year",
+                sql_query="SELECT SUM(od.quantityOrdered * od.priceEach) as total_revenue FROM orders o JOIN orderdetails od ON o.orderNumber = od.orderNumber WHERE STRFTIME('%Y', o.orderDate) = STRFTIME('%Y', 'now');",
+                explanation="Calculates total revenue for current year using SQLite STRFTIME",
+                category="revenue_analysis",
+                difficulty="medium",
+                tables_used=["orders", "orderdetails"]
+            ),
+            SQLExample(
+                question="Monthly revenue trends",
+                sql_query="SELECT STRFTIME('%Y-%m', o.orderDate) as month, SUM(od.quantityOrdered * od.priceEach) as monthly_revenue FROM orders o JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY STRFTIME('%Y-%m', o.orderDate) ORDER BY month;",
+                explanation="Shows monthly revenue trends using SQLite date functions",
+                category="time_series",
+                difficulty="medium",
+                tables_used=["orders", "orderdetails"]
+            ),
+            SQLExample(
+                question="Which customer has the highest lifetime value",
+                sql_query="SELECT c.customerName, SUM(od.quantityOrdered * od.priceEach) as lifetime_value FROM customers c JOIN orders o ON c.customerNumber = o.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerNumber, c.customerName ORDER BY lifetime_value DESC LIMIT 1;",
+                explanation="Finds customer with highest total order value",
+                category="customer_analytics",
+                difficulty="hard",
+                tables_used=["customers", "orders", "orderdetails"]
+            ),
+            SQLExample(
+                question="Top 3 product lines by revenue",
+                sql_query="SELECT pl.productLine, SUM(od.quantityOrdered * od.priceEach) as total_revenue FROM productlines pl JOIN products p ON pl.productLine = p.productLine JOIN orderdetails od ON p.productCode = od.productCode GROUP BY pl.productLine ORDER BY total_revenue DESC LIMIT 3;",
+                explanation="Shows top product lines by total revenue",
+                category="product_analytics",
+                difficulty="hard", 
+                tables_used=["productlines", "products", "orderdetails"]
+            ),
+            SQLExample(
+                question="Which sales rep has the most customers",
+                sql_query="SELECT e.firstName, e.lastName, COUNT(c.customerNumber) as customer_count FROM employees e JOIN customers c ON e.employeeNumber = c.salesRepEmployeeNumber GROUP BY e.employeeNumber, e.firstName, e.lastName ORDER BY customer_count DESC LIMIT 1;",
+                explanation="Finds sales representative with most customers",
+                category="employee_analytics",
+                difficulty="medium",
+                tables_used=["employees", "customers"]
+            ),
+            SQLExample(
+                question="Product profitability analysis",
+                sql_query="SELECT p.productName, SUM(od.quantityOrdered * (od.priceEach - p.buyPrice)) as total_profit FROM products p JOIN orderdetails od ON p.productCode = od.productCode GROUP BY p.productCode, p.productName ORDER BY total_profit DESC LIMIT 10;",
+                explanation="Calculates profit for each product (revenue minus cost)",
+                category="profitability",
+                difficulty="hard",
+                tables_used=["products", "orderdetails"]
             )
         ]
         
@@ -388,6 +438,8 @@ class RAGVectorStore:
             metadata = asdict(example)
             if metadata.get('tables_used') and isinstance(metadata['tables_used'], list):
                 metadata['tables_used'] = ','.join(metadata['tables_used'])
+            else:
+                metadata['tables_used'] = ""
             
             self.collection.add(
                 ids=[example_id],
@@ -409,14 +461,16 @@ class RAGVectorStore:
             logger.error(f"Failed to add example: {e}")
             return False
     
-    def search_similar_examples(self, question: str, k: int = RAG_MAX_EXAMPLES) -> List[Tuple[SQLExample, float]]:
+    def search_similar_examples(self, question: str, k: int = RAG_MAX_EXAMPLES, 
+                               use_relaxed_threshold: bool = False) -> List[Tuple[SQLExample, float]]:
         """Search for similar examples using semantic similarity."""
         try:
             # Generate query embedding
             query_embedding = self.embedding_model.encode([question])[0]
             
-            # Search using ChromaDB
-            n_results = max(1, min(k, len(self.examples))) if self.examples else 0
+            # Search using ChromaDB - get more results for relaxed matching
+            search_k = k * 3 if use_relaxed_threshold else k
+            n_results = max(1, min(search_k, len(self.examples))) if self.examples else 0
             if n_results == 0:
                 return []
                 
@@ -426,13 +480,16 @@ class RAGVectorStore:
                 include=['metadatas', 'distances']
             )
             
+            # Choose threshold based on mode
+            threshold = RAG_RELAXED_THRESHOLD if use_relaxed_threshold else RAG_SIMILARITY_THRESHOLD
+            
             similar_examples = []
             for i, metadata in enumerate(results['metadatas'][0]):
                 # Convert distance to similarity (ChromaDB uses cosine distance)
                 distance = results['distances'][0][i]
                 similarity = 1 - distance
                 
-                if similarity >= RAG_SIMILARITY_THRESHOLD:
+                if similarity >= threshold:
                     # Convert string back to list for tables_used
                     tables_used = metadata.get('tables_used', [])
                     if isinstance(tables_used, str):
@@ -451,10 +508,11 @@ class RAGVectorStore:
                     )
                     similar_examples.append((example, similarity))
             
-            # Sort by similarity
+            # Sort by similarity and limit results
             similar_examples.sort(key=lambda x: x[1], reverse=True)
+            similar_examples = similar_examples[:k]
             
-            logger.info(f"Found {len(similar_examples)} similar examples for: {question}")
+            logger.info(f"Found {len(similar_examples)} similar examples for: {question} (threshold: {threshold})")
             return similar_examples
             
         except Exception as e:
@@ -540,7 +598,23 @@ class RAGSQLClient:
             
             prompt = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
 
-You are an expert SQL query generator for a CRM database. Generate ONLY the SQL query, nothing else.
+You are an expert SQLite query generator for a CRM database. Generate ONLY valid SQLite SQL queries.
+
+🔧 CRITICAL SQLite Syntax Rules (MUST FOLLOW):
+- Use STRFTIME('%Y', date_column) for year extraction, NOT EXTRACT()
+- Use STRFTIME('%m', date_column) for month extraction, NOT EXTRACT()
+- Use STRFTIME('%Y-%m', date_column) for year-month grouping
+- Revenue calculation: orderdetails.quantityOrdered * orderdetails.priceEach
+
+⚠️ Key Column Locations (CRITICAL):
+- orderDate: In ORDERS table (not orderdetails)
+- priceEach: In ORDERDETAILS table (not products)
+- salesRepEmployeeNumber: In CUSTOMERS table (not orders)
+
+📊 Common Join Patterns:
+- Employee performance: employees -> customers -> orders -> orderdetails
+- Revenue analysis: orders -> orderdetails
+- Product analysis: products -> orderdetails
 
 {CRM_BUSINESS_CONTEXT}
 
@@ -551,7 +625,8 @@ Database Schema:
 
 Question: {question}
 
-Generate only a valid SQL query that answers the question. Do not include any explanations, just the SQL.
+Generate ONLY a valid SQLite query using proper table relationships and SQLite syntax. 
+REMEMBER: Use STRFTIME() not EXTRACT(), and check column locations carefully.
 
 <|eot_id|><|start_header_id|>assistant<|end_header_id|>
 
@@ -577,6 +652,10 @@ SELECT"""
             
             # Extract SQL from response
             sql_query = self._extract_sql_from_response(response)
+            
+            # Apply validation and auto-correction
+            if sql_query:
+                sql_query = self._validate_and_fix_sql(sql_query)
             
             return sql_query
             
@@ -605,6 +684,14 @@ SELECT"""
             
             sql_query = ' '.join(sql_lines).strip()
             
+            # Remove any trailing punctuation that's not semicolon
+            sql_query = sql_query.rstrip('.,!?')
+            
+            # Fix common syntax errors
+            # Remove extra closing parentheses
+            while sql_query.count(')') > sql_query.count('('):
+                sql_query = sql_query.rstrip(');').rstrip(')')
+            
             # Ensure it ends with semicolon
             if sql_query and not sql_query.endswith(';'):
                 sql_query += ';'
@@ -615,46 +702,109 @@ SELECT"""
             logger.error(f"Failed to extract SQL: {e}")
             return None
     
+    def _validate_and_fix_sql(self, sql_query: str) -> str:
+        """Validate and fix common SQLite syntax issues."""
+        if not sql_query:
+            return sql_query
+            
+        # Fix common syntax issues
+        fixes = [
+            # PostgreSQL/MySQL to SQLite date functions
+            ("EXTRACT(MONTH FROM", "STRFTIME('%m',"),
+            ("EXTRACT(YEAR FROM", "STRFTIME('%Y',"),
+            ("EXTRACT(DAY FROM", "STRFTIME('%d',"),
+            
+            # Common column location errors
+            ("orderdetails.orderDate", "orders.orderDate"),
+            ("products.priceEach", "orderdetails.priceEach"),
+            ("orders.salesRepEmployeeNumber", "customers.salesRepEmployeeNumber"),
+            
+            # Table alias corrections
+            ("PS.priceEach", "od.priceEach"),
+            ("T2.orderDate", "o.orderDate"),
+            ("O.salesRepEmployeeNumber", "c.salesRepEmployeeNumber"),
+            
+            # Fix common JOIN issues
+            ("JOIN Orders O ON E.employeeNumber = O.salesRepEmployeeNumber", 
+             "JOIN customers c ON E.employeeNumber = c.salesRepEmployeeNumber JOIN orders o ON c.customerNumber = o.customerNumber"),
+        ]
+        
+        for old, new in fixes:
+            sql_query = sql_query.replace(old, new)
+        
+        # Ensure proper capitalization for SQLite
+        sql_query = sql_query.replace("FROM PRODUCTS", "FROM products")
+        sql_query = sql_query.replace("FROM ORDERDETAILS", "FROM orderdetails")
+        sql_query = sql_query.replace("FROM ORDERS", "FROM orders")
+        sql_query = sql_query.replace("FROM CUSTOMERS", "FROM customers")
+        sql_query = sql_query.replace("FROM EMPLOYEES", "FROM employees")
+        
+        logger.info(f"SQL validation applied: {sql_query}")
+        return sql_query
+    
     def generate_sql(self, question: str, schema_info: str) -> Dict[str, Any]:
-        """Generate SQL query using RAG approach."""
+        """Generate SQL query using 3-tier RAG approach for maximum analytical capability."""
         start_time = time.time()
         
         try:
-            # Search for similar examples
+            # Tier 1: Search for high-confidence similar examples (threshold 0.6)
             similar_examples = self.vector_store.search_similar_examples(question)
             
             sql_query = None
             method_used = "none"
+            confidence = 0.0
             
-            # Try LLM generation first
+            # Tier 1: Try LLM generation with high-confidence examples
             if self.model and similar_examples:
                 sql_query = self._generate_sql_with_llm(question, similar_examples, schema_info)
                 if sql_query:
                     method_used = "llm_with_rag"
+                    confidence = similar_examples[0][1]
+                    logger.info(f"Tier 1 Success: Generated SQL with high-confidence examples")
             
-            # Fallback to best example if LLM fails
+            # Tier 2: Try LLM generation with relaxed similarity examples (threshold 0.3)
+            if not sql_query and self.model:
+                relaxed_examples = self.vector_store.search_similar_examples(question, use_relaxed_threshold=True)
+                if relaxed_examples:
+                    sql_query = self._generate_sql_with_llm(question, relaxed_examples, schema_info)
+                    if sql_query:
+                        method_used = "llm_with_relaxed_rag"
+                        confidence = relaxed_examples[0][1]
+                        logger.info(f"Tier 2 Success: Generated SQL with relaxed examples")
+            
+            # Tier 3: Pure LLM generation (NO examples needed - for analytical queries)
+            if not sql_query and self.model:
+                sql_query = self._generate_sql_with_llm(question, [], schema_info)  # Empty examples
+                if sql_query:
+                    method_used = "pure_llm"
+                    confidence = 0.5  # Medium confidence for pure generation
+                    logger.info(f"Tier 3 Success: Pure LLM generation for analytical query")
+            
+            # Tier 4: Fallback to best example if everything fails
             if not sql_query and similar_examples:
                 best_example, similarity = similar_examples[0]
                 sql_query = best_example.sql_query
                 method_used = "example_retrieval"
+                confidence = similarity
                 
                 # Update example usage stats
                 self.vector_store.update_example_stats(best_example, True)
+                logger.info(f"Tier 4 Fallback: Using best example")
             
-            # If no similar examples found, return error
+            # Final check - if still no SQL, return error
             if not sql_query:
                 return {
                     'sql_query': None,
                     'confidence': 0.0,
                     'similar_examples_count': 0,
-                    'method_used': 'none',
+                    'method_used': 'failed',
                     'processing_time': time.time() - start_time,
-                    'error': 'No similar examples found'
+                    'error': 'Failed to generate SQL query with all methods'
                 }
             
             return {
                 'sql_query': sql_query,
-                'confidence': similar_examples[0][1] if similar_examples else 0.0,
+                'confidence': confidence,
                 'similar_examples_count': len(similar_examples),
                 'method_used': method_used,
                 'processing_time': time.time() - start_time,
@@ -664,7 +814,7 @@ SELECT"""
                         'similarity': sim,
                         'category': ex.category
                     }
-                    for ex, sim in similar_examples
+                    for ex, sim in similar_examples[:3]  # Show top 3
                 ]
             }
             

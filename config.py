@@ -15,6 +15,7 @@ MAX_TOKENS = 200
 RAG_ENABLED = True
 RAG_VECTOR_STORE_PATH = os.path.join(os.path.dirname(__file__), "rag_data")
 RAG_SIMILARITY_THRESHOLD = 0.6
+RAG_RELAXED_THRESHOLD = 0.3  # For loose similarity matching to provide context
 RAG_MAX_EXAMPLES = 3
 
 # Safety Configuration

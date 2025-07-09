@@ -354,3 +354,252 @@ Please verify the following requirements:
 2025-07-08 17:56:39 | INFO | __main__ | 📊 Executing SQL: SELECT AVG(MSRP) as average_price FROM products;
 2025-07-08 17:56:39 | INFO | __main__ | ✅ Query completed: 1 results in 5.740s
 2025-07-08 17:57:21 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-09 11:11:23 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-09 11:11:23 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-09 11:11:23 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 11:11:23 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-09 11:11:34 | INFO | __main__ | ✅ RAG client initialized
+2025-07-09 11:11:34 | INFO | __main__ | 
+================================================================================
+2025-07-09 11:11:34 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-09 11:11:34 | INFO | __main__ | ================================================================================
+2025-07-09 11:11:34 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 11:11:34 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-09 11:11:34 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-09 11:11:34 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-09 11:11:34 | INFO | __main__ |    
+2025-07-09 11:11:34 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-09 11:11:34 | INFO | __main__ |    Key business entities:
+2025-07-09 11:11:34 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-09 11:11:34 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-09 11:11:34 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-09 11:11:34 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-09 11:11:34 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-09 11:11:34 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-09 11:11:34 | INFO | __main__ |    
+2025-07-09 11:11:34 | INFO | __main__ |    ... (truncated)
+2025-07-09 11:11:34 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-09 11:11:34 | INFO | __main__ | ================================================================================
+2025-07-09 11:11:34 | INFO | __main__ | 
+🔍 Processing Query #1: Show me all customers
+2025-07-09 11:11:34 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:11:45 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, country FROM customers ORDER BY customerName;
+2025-07-09 11:11:45 | INFO | __main__ | ✅ Query completed: 14 results in 10.487s
+2025-07-09 11:11:45 | INFO | __main__ | 
+🔍 Processing Query #2: Find customers from USA
+2025-07-09 11:11:45 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:11:53 | INFO | __main__ | 📊 Executing SQL: SELECT customerNumber, customerName, city, state FROM customers WHERE country = 'USA';
+2025-07-09 11:11:53 | INFO | __main__ | ✅ Query completed: 4 results in 8.225s
+2025-07-09 11:11:53 | INFO | __main__ | 
+🔍 Processing Query #3: List all products with their prices
+2025-07-09 11:11:53 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:11:59 | INFO | __main__ | 📊 Executing SQL: SELECT productCode, productName, buyPrice, MSRP FROM products;
+2025-07-09 11:11:59 | INFO | __main__ | ✅ Query completed: 5 results in 6.104s
+2025-07-09 11:11:59 | INFO | __main__ | 
+🔍 Processing Query #4: Show employees and their managers
+2025-07-09 11:11:59 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:12:21 | INFO | __main__ | 📊 Executing SQL: SELECT e.employeeNumber, e.firstName, e.lastName, e.jobTitle, m.firstName as managerFirstName, m.lastName as managerLastName FROM employees e LEFT JOIN employees m ON e.reportsTo = m.employeeNumber ORDER BY e.lastName;
+2025-07-09 11:12:21 | INFO | __main__ | ✅ Query completed: 23 results in 22.022s
+2025-07-09 11:12:21 | INFO | __main__ | 
+🔍 Processing Query #5: Find the most expensive product
+2025-07-09 11:12:21 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:12:32 | INFO | __main__ | 📊 Executing SQL: SELECT MAX(MSRP) FROM products);
+2025-07-09 11:12:32 | ERROR | __main__ | ❌ Query processing failed: near ")": syntax error
+2025-07-09 11:12:32 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-09 11:15:19 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-09 11:15:19 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-09 11:15:19 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 11:15:19 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-09 11:15:29 | INFO | __main__ | ✅ RAG client initialized
+2025-07-09 11:15:29 | INFO | __main__ | 
+================================================================================
+2025-07-09 11:15:29 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-09 11:15:29 | INFO | __main__ | ================================================================================
+2025-07-09 11:15:29 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 11:15:29 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-09 11:15:29 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-09 11:15:29 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-09 11:15:29 | INFO | __main__ |    
+2025-07-09 11:15:29 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-09 11:15:29 | INFO | __main__ |    Key business entities:
+2025-07-09 11:15:29 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-09 11:15:29 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-09 11:15:29 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-09 11:15:29 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-09 11:15:29 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-09 11:15:29 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-09 11:15:29 | INFO | __main__ |    
+2025-07-09 11:15:29 | INFO | __main__ |    ... (truncated)
+2025-07-09 11:15:29 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-09 11:15:29 | INFO | __main__ | ================================================================================
+2025-07-09 11:17:21 | INFO | __main__ | 
+🔍 Processing Query #1: whats the total revenue generated this year?
+2025-07-09 11:17:21 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:17:47 | INFO | __main__ | 
+🔍 Processing Query #2: which customer has the highest lifetime value?
+2025-07-09 11:17:47 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:17:58 | INFO | __main__ | 
+🔍 Processing Query #3: show me top 3 product ines by revenue
+2025-07-09 11:17:58 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:18:13 | INFO | __main__ | 
+🔍 Processing Query #4: whats our customer retention rate
+2025-07-09 11:18:13 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:18:30 | INFO | __main__ | 
+🔍 Processing Query #5: which product categories are most popular?
+2025-07-09 11:18:30 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:18:40 | INFO | __main__ | 
+🔍 Processing Query #6: show monthly revenue trends
+2025-07-09 11:18:40 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:19:55 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-09 11:29:37 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-09 11:29:37 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-09 11:29:37 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 11:29:37 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-09 11:29:49 | INFO | __main__ | ✅ RAG client initialized
+2025-07-09 11:29:49 | INFO | __main__ | 
+================================================================================
+2025-07-09 11:29:49 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-09 11:29:49 | INFO | __main__ | ================================================================================
+2025-07-09 11:29:49 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 11:29:49 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-09 11:29:49 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-09 11:29:49 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-09 11:29:49 | INFO | __main__ |    
+2025-07-09 11:29:49 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-09 11:29:49 | INFO | __main__ |    Key business entities:
+2025-07-09 11:29:49 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-09 11:29:49 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-09 11:29:49 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-09 11:29:49 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-09 11:29:49 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-09 11:29:49 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-09 11:29:49 | INFO | __main__ |    
+2025-07-09 11:29:49 | INFO | __main__ |    ... (truncated)
+2025-07-09 11:29:49 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-09 11:29:49 | INFO | __main__ | ================================================================================
+2025-07-09 11:50:02 | INFO | __main__ | 
+🔍 Processing Query #1: what is the total revenue generated this year?
+2025-07-09 11:50:02 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:50:32 | INFO | __main__ | 📊 Executing SQL: SELECT SUM(T1.MSRP * T2.quantityOrdered) AS totalRevenue FROM PRODUCTS AS T1 INNER JOIN ORDERDETAILS AS T2 ON T1.productCode = T2.productCode WHERE STRFTIME('%Y', T2.orderDate) = '2023';
+2025-07-09 11:50:32 | ERROR | __main__ | ❌ Query processing failed: no such column: T2.orderDate
+2025-07-09 11:50:54 | INFO | __main__ | 
+🔍 Processing Query #2: show monthly revenue trends
+2025-07-09 11:50:54 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:51:23 | INFO | __main__ | 📊 Executing SQL: SELECT EXTRACT(MONTH FROM o.orderDate) AS month, SUM(od.quantityOrdered * od.priceEach) AS revenue FROM ORDERS o JOIN ORDERDETAILS od ON o.orderNumber = od.orderNumber GROUP BY EXTRACT(MONTH FROM o.orderDate);
+2025-07-09 11:51:23 | ERROR | __main__ | ❌ Query processing failed: near "FROM": syntax error
+2025-07-09 11:52:43 | INFO | __main__ | 
+🔍 Processing Query #3: What's the average order value per customer?
+2025-07-09 11:52:43 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:53:10 | INFO | __main__ | 📊 Executing SQL: SELECT c.customerName, AVG(od.quantityOrdered * od.priceEach) as avg_order_value FROM customers c JOIN orders o ON c.customerNumber = o.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerNumber, c.customerName ORDER BY avg_order_value DESC;
+2025-07-09 11:53:10 | INFO | __main__ | ✅ Query completed: 3 results in 27.137s
+2025-07-09 11:53:48 | INFO | __main__ | 
+🔍 Processing Query #4: Show me the top 3 product lines by revenue
+2025-07-09 11:53:48 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:54:11 | INFO | __main__ | 📊 Executing SQL: SELECT productLine, SUM(OD.quantityOrdered * PS.priceEach) AS revenue FROM ORDERDETAILS OD INNER JOIN PRODUCTS PS ON OD.productCode = PS.productCode GROUP BY productLine ORDER BY revenue DESC LIMIT 3 ;
+2025-07-09 11:54:11 | ERROR | __main__ | ❌ Query processing failed: no such column: PS.priceEach
+2025-07-09 11:54:48 | INFO | __main__ | 
+🔍 Processing Query #5: Show employee performance by sales volume
+2025-07-09 11:54:48 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 11:55:16 | INFO | __main__ | 📊 Executing SQL: SELECT E.firstName, E.lastName, SUM(O.orderNumber) AS totalOrders, SUM(OD.quantityOrdered) AS totalSalesVolume FROM Employees E JOIN Orders O ON E.employeeNumber = O.salesRepEmployeeNumber JOIN ORDERDETAILS OD ON O.orderNumber = OD.orderNumber GROUP BY E.employeeNumber;
+2025-07-09 11:55:16 | ERROR | __main__ | ❌ Query processing failed: no such column: O.salesRepEmployeeNumber
+2025-07-09 11:55:22 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-09 12:03:31 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-09 12:03:31 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-09 12:03:31 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 12:03:31 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-09 12:03:43 | INFO | __main__ | ✅ RAG client initialized
+2025-07-09 12:03:43 | INFO | __main__ | 
+================================================================================
+2025-07-09 12:03:43 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-09 12:03:43 | INFO | __main__ | ================================================================================
+2025-07-09 12:03:43 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 12:03:43 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-09 12:03:43 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-09 12:03:43 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-09 12:03:43 | INFO | __main__ |    
+2025-07-09 12:03:43 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-09 12:03:43 | INFO | __main__ |    Key business entities:
+2025-07-09 12:03:43 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-09 12:03:43 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-09 12:03:43 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-09 12:03:43 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-09 12:03:43 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-09 12:03:43 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-09 12:03:43 | INFO | __main__ |    
+2025-07-09 12:03:43 | INFO | __main__ |    ... (truncated)
+2025-07-09 12:03:43 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-09 12:03:43 | INFO | __main__ | ================================================================================
+2025-07-09 12:05:41 | INFO | __main__ | 
+🔍 Processing Query #1: what's the total revenue generated this year?
+2025-07-09 12:05:41 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:06:03 | INFO | __main__ | 📊 Executing SQL: SELECT SUM(od.quantityOrdered * od.priceEach) AS totalRevenue FROM orderdetails od JOIN orders o ON od.orderNumber = o.orderNumber WHERE STRFTIME('%Y', o.orderDate) = STRFTIME('%Y');
+2025-07-09 12:06:03 | INFO | __main__ | ✅ Query completed: 1 results in 22.510s
+2025-07-09 12:07:32 | INFO | __main__ | 
+🔍 Processing Query #2: whats the total revenue generated by year?
+2025-07-09 12:07:32 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:07:54 | INFO | __main__ | 📊 Executing SQL: SELECT SUM(od.quantityOrdered * od.priceEach) AS totalRevenue FROM orderdetails od JOIN orders o ON od.orderNumber = o.orderNumber WHERE STRFTIME('%Y', o.orderDate) = STRFTIME('%Y');
+2025-07-09 12:07:54 | INFO | __main__ | ✅ Query completed: 1 results in 21.873s
+2025-07-09 12:08:12 | INFO | __main__ | 
+🔍 Processing Query #3: what's the total revenue generated in 2005?
+2025-07-09 12:08:12 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:08:33 | INFO | __main__ | 📊 Executing SQL: SELECT SUM(od.quantityOrdered * od.priceEach) AS totalRevenue FROM orderdetails od JOIN orders o ON od.orderNumber = o.orderNumber WHERE STRFTIME('%Y', o.orderDate) = '2005';
+2025-07-09 12:08:33 | INFO | __main__ | ✅ Query completed: 1 results in 21.259s
+2025-07-09 12:09:07 | INFO | __main__ | 
+🔍 Processing Query #4: Which month had the highest sales volume?
+2025-07-09 12:09:07 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:09:36 | INFO | __main__ | 📊 Executing SQL: SELECT STRFTIME('%Y-%m', o.orderDate) AS orderMonth, SUM(od.quantityOrdered) AS salesVolume FROM orders o JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY STRFTIME('%Y-%m', o.orderDate) ORDER BY salesVolume DESC LIMIT 1;
+2025-07-09 12:09:36 | INFO | __main__ | ✅ Query completed: 1 results in 29.010s
+2025-07-09 12:10:23 | INFO | __main__ | 
+🔍 Processing Query #5: Distribution of customers by country
+2025-07-09 12:10:23 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:10:31 | INFO | __main__ | 📊 Executing SQL: SELECT COUNT(DISTINCT c.country) AS unique_countries FROM customers c;
+2025-07-09 12:10:31 | INFO | __main__ | ✅ Query completed: 1 results in 7.339s
+2025-07-09 12:11:18 | INFO | __main__ | 
+🔍 Processing Query #6: what's the total revenue generated in 2005?
+2025-07-09 12:11:18 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:11:39 | INFO | __main__ | 📊 Executing SQL: SELECT SUM(od.quantityOrdered * od.priceEach) AS totalRevenue FROM orderdetails od JOIN orders o ON od.orderNumber = o.orderNumber WHERE STRFTIME('%Y', o.orderDate) = '2005';
+2025-07-09 12:11:40 | INFO | __main__ | ✅ Query completed: 1 results in 21.314s
+2025-07-09 12:11:50 | INFO | __main__ | 
+🔍 Processing Query #7: what's the total revenue generated in 2003?
+2025-07-09 12:11:50 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:12:11 | INFO | __main__ | 📊 Executing SQL: SELECT SUM(od.quantityOrdered * od.priceEach) AS totalRevenue FROM orderdetails od JOIN orders o ON od.orderNumber = o.orderNumber WHERE STRFTIME('%Y', o.orderDate) = '2003';
+2025-07-09 12:12:12 | INFO | __main__ | ✅ Query completed: 1 results in 21.282s
+2025-07-09 12:12:31 | INFO | __main__ | 
+🔍 Processing Query #8: Seasonal trends in product sales
+2025-07-09 12:12:31 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:12:56 | INFO | __main__ | 📊 Executing SQL: SELECT STRFTIME('%Y', o.orderDate) AS year, SUM(od.quantityOrdered * od.priceEach) AS revenue FROM orders o JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY STRFTIME('%Y', o.orderDate);
+2025-07-09 12:12:56 | INFO | __main__ | ✅ Query completed: 1 results in 24.568s
+2025-07-09 12:13:28 | INFO | __main__ | 
+🔍 Processing Query #9: what are the unique years available?
+2025-07-09 12:13:28 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:13:36 | INFO | __main__ | 📊 Executing SQL: SELECT DISTINCT STRFTIME('%Y', o.orderDate) FROM orders o;
+2025-07-09 12:13:36 | INFO | __main__ | ✅ Query completed: 1 results in 8.190s
+2025-07-09 12:14:11 | INFO | __main__ | 
+🔍 Processing Query #10: top 3 product lines by revenue
+2025-07-09 12:14:11 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:14:31 | INFO | __main__ | 📊 Executing SQL: SELECT productLine, SUM(od.quantityOrdered * od.priceEach) AS revenue FROM orderdetails od JOIN products p ON od.productCode = p.productCode GROUP BY productLine ORDER BY revenue DESC LIMIT 3;
+2025-07-09 12:14:31 | INFO | __main__ | ✅ Query completed: 1 results in 19.620s
+2025-07-09 12:15:05 | INFO | __main__ | 
+🔍 Processing Query #11: top 3 products by revenue
+2025-07-09 12:15:05 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:15:28 | INFO | __main__ | 📊 Executing SQL: SELECT p.productName, SUM(od.quantityOrdered * od.priceEach) AS revenue FROM orderdetails od JOIN products p ON od.productCode = p.productCode GROUP BY p.productName ORDER BY revenue DESC LIMIT 3;
+2025-07-09 12:15:28 | INFO | __main__ | ✅ Query completed: 1 results in 23.306s
+2025-07-09 12:15:41 | INFO | __main__ | 
+🔍 Processing Query #12: list all unique products
+2025-07-09 12:15:41 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:15:44 | INFO | __main__ | 📊 Executing SQL: SELECT DISTINCT productCode FROM products;
+2025-07-09 12:15:44 | INFO | __main__ | ✅ Query completed: 5 results in 3.677s
+2025-07-09 12:15:56 | INFO | __main__ | 
+🔍 Processing Query #13: list all unique products by name
+2025-07-09 12:15:56 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:15:59 | INFO | __main__ | 📊 Executing SQL: SELECT DISTINCT productName FROM products;
+2025-07-09 12:15:59 | INFO | __main__ | ✅ Query completed: 5 results in 3.231s
+2025-07-09 12:23:23 | INFO | __main__ | 🧹 Cleanup completed

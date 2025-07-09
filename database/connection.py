@@ -124,8 +124,39 @@ class DatabaseConnection:
             raise
     
     def get_schema_description(self) -> str:
-        """Get a comprehensive schema description for the CRM database."""
-        schema_parts = [CRM_BUSINESS_CONTEXT, "\nDatabase Schema:"]
+        """Get a comprehensive schema description for the CRM database with SQLite syntax guidance."""
+        schema_parts = [
+            CRM_BUSINESS_CONTEXT,
+            "\n🗄️ Database Schema (SQLite):",
+            "\n🔧 CRITICAL SQLite Syntax Rules:",
+            "- Use STRFTIME('%Y', date_column) for year extraction, NOT EXTRACT()",
+            "- Use STRFTIME('%m', date_column) for month extraction, NOT EXTRACT()",
+            "- Use STRFTIME('%Y-%m', date_column) for year-month grouping",
+            "\n📊 Table Relationships (Foreign Keys):",
+            "- customers.salesRepEmployeeNumber -> employees.employeeNumber",
+            "- orders.customerNumber -> customers.customerNumber", 
+            "- orderdetails.orderNumber -> orders.orderNumber",
+            "- orderdetails.productCode -> products.productCode",
+            "- products.productLine -> productlines.productLine",
+            "- employees.officeCode -> offices.officeCode",
+            "- payments.customerNumber -> customers.customerNumber",
+            "\n💰 Revenue & Financial Calculations:",
+            "- Revenue = orderdetails.quantityOrdered * orderdetails.priceEach",
+            "- Product cost = products.buyPrice",
+            "- Product retail price = products.MSRP",
+            "- Payment amounts = payments.amount",
+            "\n⚠️ Key Column Locations (IMPORTANT!):",
+            "- orderDate: In ORDERS table (not orderdetails)",
+            "- priceEach: In ORDERDETAILS table (not products)", 
+            "- salesRepEmployeeNumber: In CUSTOMERS table (not orders)",
+            "- quantityOrdered: In ORDERDETAILS table",
+            "- paymentDate: In PAYMENTS table",
+            "\n📈 Common Analytical Patterns:",
+            "- Total revenue: SUM(od.quantityOrdered * od.priceEach) FROM orderdetails od",
+            "- Monthly trends: GROUP BY STRFTIME('%Y-%m', o.orderDate)",
+            "- Top customers: ORDER BY SUM(revenue) DESC LIMIT N",
+            "- Employee performance: JOIN customers c ON e.employeeNumber = c.salesRepEmployeeNumber"
+        ]
         
         try:
             if not self.connection:
@@ -142,10 +173,22 @@ class DatabaseConnection:
                 cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
                 row_count = cursor.fetchone()[0]
                 
-                schema_parts.append(f"\n{table_name.upper()} ({row_count} rows):")
+                schema_parts.append(f"\n📋 {table_name.upper()} ({row_count} rows):")
                 for col_info in columns_info:
                     col_name, col_type, nullable = col_info[1], col_info[2], "NULL" if not col_info[3] else "NOT NULL"
                     schema_parts.append(f"  - {col_name}: {col_type} {nullable}")
+                    
+                # Add specific guidance for key tables
+                if table_name == "orderdetails":
+                    schema_parts.append("  💡 Key for revenue: quantityOrdered * priceEach")
+                elif table_name == "orders":
+                    schema_parts.append("  💡 Date operations: STRFTIME('%Y', orderDate) for year")
+                elif table_name == "products":
+                    schema_parts.append("  💡 Pricing: MSRP (retail), buyPrice (cost)")
+                elif table_name == "customers":
+                    schema_parts.append("  💡 Links to employees via salesRepEmployeeNumber")
+                elif table_name == "employees":
+                    schema_parts.append("  💡 Performance via customer relationships")
             
             return "\n".join(schema_parts)
             

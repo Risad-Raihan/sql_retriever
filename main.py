@@ -268,45 +268,8 @@ def main():
         # Create and initialize the SQL retriever
         retriever = CRMSQLRetriever()
         
-        # Check if running in interactive mode
-        if len(sys.argv) > 1 and sys.argv[1] == '--interactive':
-            retriever.interactive_mode()
-        else:
-            # Test with a few sample queries
-            test_queries = [
-                "Show me all customers",
-                "Find customers from USA", 
-                "List all products with their prices",
-                "Show employees and their managers",
-                "Find the most expensive product"
-            ]
-            
-            print("\n🧪 Running test queries...")
-            for i, question in enumerate(test_queries, 1):
-                print(f"\n{'='*60}")
-                print(f"Test {i}/{len(test_queries)}: {question}")
-                print('='*60)
-                
-                result = retriever.process_query(question)
-                
-                if result['success']:
-                    print(f"✅ Success! Method: {result['method']}")
-                    print(f"📊 SQL: {result['sql_query']}")
-                    print(f"📈 Results: {result['result_count']} rows")
-                    print(f"⏱️  Time: {result['processing_time']:.3f}s")
-                    
-                    if result['results']:
-                        # Show first 3 results
-                        formatter = ResponseFormatter()
-                        formatted = formatter.format_table_data(result['results'][:3])
-                        print(f"\n📋 Sample Results:\n{formatted}")
-                        
-                        if len(result['results']) > 3:
-                            print(f"... and {len(result['results']) - 3} more rows")
-                else:
-                    print(f"❌ Error: {result['error']}")
-                    if result.get('sql_query'):
-                        print(f"📊 Generated SQL: {result['sql_query']}")
+        # Always run in interactive mode
+        retriever.interactive_mode()
         
         # Cleanup
         retriever.cleanup()
