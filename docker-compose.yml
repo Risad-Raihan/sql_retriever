@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  sql-retriever-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Required environment variables
+      - API_KEY=your-secure-api-key-here
+      - DATABASE_PATH=/app/data/test_crm_v1.db
+      - RAG_ENABLED=true
+      - LOG_LEVEL=INFO
+      - ENVIRONMENT=development
+      # Cloud configuration (uncomment for cloud deployment)
+      # - DATABASE_PATH=postgresql://user:password@host:port/database
+      # - MODEL_NAME=unsloth/Llama-3.2-3B-Instruct
+    volumes:
+      # Mount local data and RAG directories for development
+      - ./data:/app/data
+      - ./rag_data:/app/rag_data
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped 
