@@ -385,6 +385,24 @@ class RAGVectorStore:
                 category="profitability",
                 difficulty="hard",
                 tables_used=["products", "orderdetails"]
+            ),
+            
+            # Customer distribution analysis
+            SQLExample(
+                question="Customer distribution by country with counts",
+                sql_query="SELECT c.country, COUNT(c.customerNumber) as customer_count FROM customers c GROUP BY c.country ORDER BY customer_count DESC;",
+                explanation="Shows customer distribution across countries with proper GROUP BY",
+                category="customer_analytics",
+                difficulty="medium",
+                tables_used=["customers"]
+            ),
+            SQLExample(
+                question="Show customer distribution by country",
+                sql_query="SELECT c.country, COUNT(*) as customer_count FROM customers c GROUP BY c.country ORDER BY customer_count DESC;",
+                explanation="Customer distribution across all countries",
+                category="customer_analytics", 
+                difficulty="medium",
+                tables_used=["customers"]
             )
         ]
         
@@ -739,8 +757,71 @@ SELECT"""
         sql_query = sql_query.replace("FROM CUSTOMERS", "FROM customers")
         sql_query = sql_query.replace("FROM EMPLOYEES", "FROM employees")
         
+        # Fix missing GROUP BY clauses
+        sql_query = self._fix_missing_group_by(sql_query)
+        
         logger.info(f"SQL validation applied: {sql_query}")
         return sql_query
+    
+    def _fix_missing_group_by(self, sql_query: str) -> str:
+        """Detect and fix missing GROUP BY clauses."""
+        try:
+            # Convert to uppercase for analysis
+            sql_upper = sql_query.upper()
+            
+            # Check if query has aggregate functions
+            aggregate_functions = ['COUNT(', 'SUM(', 'AVG(', 'MIN(', 'MAX(']
+            has_aggregates = any(func in sql_upper for func in aggregate_functions)
+            
+            # Check if query already has GROUP BY
+            has_group_by = 'GROUP BY' in sql_upper
+            
+            if has_aggregates and not has_group_by:
+                # Detect non-aggregate columns in SELECT clause
+                # Look for patterns like "c.country" or "country" that aren't in aggregate functions
+                import re
+                
+                # Extract SELECT clause
+                select_match = re.search(r'SELECT\s+(.*?)\s+FROM', sql_query, re.IGNORECASE | re.DOTALL)
+                if select_match:
+                    select_clause = select_match.group(1)
+                    
+                    # Find non-aggregate columns
+                    # Remove aggregate function calls
+                    temp_select = select_clause
+                    for func in aggregate_functions:
+                        # Remove aggregate function calls
+                        temp_select = re.sub(func.replace('(', r'\(') + r'[^)]+\)', '', temp_select, flags=re.IGNORECASE)
+                    
+                    # Find remaining column references
+                    column_patterns = [
+                        r'(\w+\.\w+)',  # table.column
+                        r'(\w+)(?=\s*,|\s*$)',  # standalone column names
+                    ]
+                    
+                    group_by_columns = []
+                    for pattern in column_patterns:
+                        matches = re.findall(pattern, temp_select)
+                        for match in matches:
+                            if match.strip() and match.upper() not in ['AS', 'FROM'] and not match.isdigit():
+                                group_by_columns.append(match.strip())
+                    
+                    # Add GROUP BY if we found non-aggregate columns
+                    if group_by_columns:
+                        # Remove semicolon temporarily
+                        sql_clean = sql_query.rstrip(';')
+                        
+                        # Add GROUP BY clause
+                        group_by_clause = f" GROUP BY {', '.join(group_by_columns)}"
+                        sql_query = sql_clean + group_by_clause + ";"
+                        
+                        logger.info(f"Added GROUP BY clause: {group_by_clause}")
+            
+            return sql_query
+            
+        except Exception as e:
+            logger.error(f"Failed to fix GROUP BY: {e}")
+            return sql_query
     
     def generate_sql(self, question: str, schema_info: str) -> Dict[str, Any]:
         """Generate SQL query using 3-tier RAG approach for maximum analytical capability."""

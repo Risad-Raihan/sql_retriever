@@ -12,21 +12,13 @@ colorama>=0.4.6
 pydantic>=2.5.0
 sqlparse>=0.4.0
 
-# LLM and LangChain dependencies
-langchain>=0.3.26
-langchain-community>=0.3.27
-langchain-experimental>=0.3.4
+# LLM dependencies
 transformers>=4.41.0
 torch>=1.11.0
-accelerate>=0.21.0
 
 # RAG dependencies
 chromadb>=1.0.15
 sentence-transformers>=5.0.0
 faiss-cpu>=1.11.0
 numpy>=1.22.5
-scikit-learn>=1.7.0
-
-# Optional dependencies
-tiktoken>=0.5.0
-openai>=1.0.0 
+scikit-learn>=1.7.0 

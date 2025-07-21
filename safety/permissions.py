@@ -3,7 +3,6 @@
 from typing import Dict, List, Set, Any, Optional
 from enum import Enum
 
-from config import USER_ROLES, SAFETY_CONFIG
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -22,8 +21,30 @@ class PermissionManager:
     
     def __init__(self):
         """Initialize permission manager."""
-        self.user_roles = USER_ROLES
-        self.safety_config = SAFETY_CONFIG
+        # Default user roles configuration
+        self.user_roles = {
+            'viewer': {
+                'allowed_operations': ['SELECT'],
+                'max_results': 100,
+                'requires_confirmation': []
+            },
+            'user': {
+                'allowed_operations': ['SELECT', 'INSERT', 'UPDATE'],
+                'max_results': 1000,
+                'requires_confirmation': ['INSERT', 'UPDATE']
+            },
+            'admin': {
+                'allowed_operations': ['SELECT', 'INSERT', 'UPDATE', 'DELETE'],
+                'max_results': 10000,
+                'requires_confirmation': ['DELETE']
+            }
+        }
+        # Default safety configuration
+        self.safety_config = {
+            'enable_safety_checks': True,
+            'allowed_operations': ['SELECT'],
+            'blocked_keywords': ['DROP', 'DELETE', 'UPDATE', 'INSERT', 'ALTER', 'CREATE', 'TRUNCATE']
+        }
     
     def check_operation_permission(self, user_role: str, operation: str) -> bool:
         """Check if user role has permission for operation.

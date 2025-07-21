@@ -26,11 +26,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create non-root user for security
-RUN groupadd -r appuser && useradd -r -g appuser appuser
+RUN groupadd -r appuser && useradd -r -g appuser -m appuser
 
 # Create necessary directories and set permissions
 RUN mkdir -p /app/rag_data /app/logs && \
-    chown -R appuser:appuser /app
+    mkdir -p /home/appuser/.cache/huggingface && \
+    chown -R appuser:appuser /app && \
+    chown -R appuser:appuser /home/appuser
 
 # Switch to non-root user
 USER appuser

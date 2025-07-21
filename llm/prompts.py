@@ -2,7 +2,6 @@
 
 import json
 from typing import Dict, Any, List, Optional
-from config import SQL_GENERATION_PROMPT, RESPONSE_GENERATION_PROMPT
 
 
 class PromptManager:
@@ -10,8 +9,34 @@ class PromptManager:
     
     def __init__(self):
         """Initialize prompt manager."""
-        self.sql_generation_template = SQL_GENERATION_PROMPT
-        self.response_generation_template = RESPONSE_GENERATION_PROMPT
+        self.sql_generation_template = """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+You are an expert SQL query generator for a CRM database. Generate ONLY the SQL query, nothing else.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+Database Schema:
+{schema}
+
+Question: {question}
+
+Generate only a valid SQL query that answers the question. Do not include any explanations, just the SQL.
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+SELECT"""
+        
+        self.response_generation_template = """
+You are a helpful assistant that converts SQL query results into natural language responses.
+
+Original Question: {question}
+SQL Query: {sql_query}
+Query Results: {results}
+
+Provide a clear, concise response in natural language that answers the user's question.
+If the results are empty, provide a helpful message.
+Format data appropriately (tables, lists, or summaries as needed).
+"""
     
     def build_sql_generation_prompt(self, natural_language: str, schema: Dict[str, Any]) -> str:
         """Build prompt for SQL generation.

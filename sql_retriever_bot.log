@@ -603,3 +603,556 @@ Please verify the following requirements:
 2025-07-09 12:15:59 | INFO | __main__ | 📊 Executing SQL: SELECT DISTINCT productName FROM products;
 2025-07-09 12:15:59 | INFO | __main__ | ✅ Query completed: 5 results in 3.231s
 2025-07-09 12:23:23 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-09 12:56:20 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-09 12:56:20 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-09 12:56:20 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 12:56:20 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-09 12:56:32 | INFO | __main__ | ✅ RAG client initialized
+2025-07-09 12:56:32 | INFO | __main__ | 
+================================================================================
+2025-07-09 12:56:32 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-09 12:56:32 | INFO | __main__ | ================================================================================
+2025-07-09 12:56:32 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 12:56:32 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-09 12:56:32 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-09 12:56:32 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-09 12:56:32 | INFO | __main__ |    
+2025-07-09 12:56:32 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-09 12:56:32 | INFO | __main__ |    Key business entities:
+2025-07-09 12:56:32 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-09 12:56:32 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-09 12:56:32 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-09 12:56:32 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-09 12:56:32 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-09 12:56:32 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-09 12:56:32 | INFO | __main__ |    
+2025-07-09 12:56:32 | INFO | __main__ |    ... (truncated)
+2025-07-09 12:56:32 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-09 12:56:32 | INFO | __main__ | ================================================================================
+2025-07-09 12:56:52 | INFO | __main__ | 
+🔍 Processing Query #1: what's the date range of orders?
+2025-07-09 12:56:52 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:57:02 | INFO | __main__ | 📊 Executing SQL: SELECT STRFTIME('%Y-%m', o.orderDate) AS orderRange FROM orders o;
+2025-07-09 12:57:02 | INFO | __main__ | ✅ Query completed: 11 results in 9.522s
+2025-07-09 12:57:43 | INFO | __main__ | 
+🔍 Processing Query #2: show customer distribution by country with counts
+2025-07-09 12:57:43 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:57:50 | INFO | __main__ | 📊 Executing SQL: SELECT c.country, COUNT(c.customerNumber) AS customer_count FROM customers c;
+2025-07-09 12:57:50 | INFO | __main__ | ✅ Query completed: 1 results in 7.047s
+2025-07-09 12:58:16 | INFO | __main__ | 
+🔍 Processing Query #3: show all the unique countries
+2025-07-09 12:58:16 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:58:19 | INFO | __main__ | 📊 Executing SQL: SELECT DISTINCT customers.country FROM customers;
+2025-07-09 12:58:19 | INFO | __main__ | ✅ Query completed: 9 results in 3.339s
+2025-07-09 12:59:28 | INFO | __main__ | 
+🔍 Processing Query #4: show customer distribution of all coutries by count
+2025-07-09 12:59:28 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 12:59:35 | INFO | __main__ | 📊 Executing SQL: SELECT c.country, COUNT(c.customerNumber) AS customer_count FROM customers c;
+2025-07-09 12:59:35 | INFO | __main__ | ✅ Query completed: 1 results in 6.983s
+2025-07-09 13:00:04 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-09 13:02:41 | INFO | __main__ | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-09 13:02:41 | INFO | __main__ | 📊 Connecting to CRM database...
+2025-07-09 13:02:41 | INFO | __main__ | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 13:02:41 | INFO | __main__ | 🎯 Initializing RAG client...
+2025-07-09 13:02:51 | INFO | __main__ | ✅ RAG client initialized
+2025-07-09 13:02:51 | INFO | __main__ | 
+================================================================================
+2025-07-09 13:02:51 | INFO | __main__ | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-09 13:02:51 | INFO | __main__ | ================================================================================
+2025-07-09 13:02:51 | INFO | __main__ | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-09 13:02:51 | INFO | __main__ | 🎯 RAG Enabled: True
+2025-07-09 13:02:51 | INFO | __main__ | 🛡️ Safety Checks: True
+2025-07-09 13:02:51 | INFO | __main__ | 
+📋 CRM Database Schema:
+2025-07-09 13:02:51 | INFO | __main__ |    
+2025-07-09 13:02:51 | INFO | __main__ |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-09 13:02:51 | INFO | __main__ |    Key business entities:
+2025-07-09 13:02:51 | INFO | __main__ |    - Customers: Companies/individuals who buy products
+2025-07-09 13:02:51 | INFO | __main__ |    - Products: Items sold by the company, organized into product lines
+2025-07-09 13:02:51 | INFO | __main__ |    - Orders: Purchase orders from customers
+2025-07-09 13:02:51 | INFO | __main__ |    - Employees: Company staff who manage sales and operations
+2025-07-09 13:02:51 | INFO | __main__ |    - Offices: Company locations where employees work
+2025-07-09 13:02:51 | INFO | __main__ |    - Payments: Customer payments for orders
+2025-07-09 13:02:51 | INFO | __main__ |    
+2025-07-09 13:02:51 | INFO | __main__ |    ... (truncated)
+2025-07-09 13:02:51 | INFO | __main__ | 
+🚀 Ready to process queries!
+2025-07-09 13:02:51 | INFO | __main__ | ================================================================================
+2025-07-09 13:02:54 | INFO | __main__ | 
+🔍 Processing Query #1: how customer distribution of all coutries by count
+2025-07-09 13:02:54 | INFO | __main__ | 🎯 Using RAG for SQL generation...
+2025-07-09 13:03:02 | INFO | __main__ | 📊 Executing SQL: SELECT c.country, COUNT(c.customerNumber) AS customer_count FROM customers c GROUP BY c.country, country, customer_count;
+2025-07-09 13:03:02 | ERROR | __main__ | ❌ Query processing failed: aggregate functions are not allowed in the GROUP BY clause
+2025-07-09 13:06:00 | INFO | __main__ | 🧹 Cleanup completed
+2025-07-21 03:46:30 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 03:46:30 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 03:46:30 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 03:46:30 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 03:46:30 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 03:46:53 | INFO | main | ✅ RAG client initialized
+2025-07-21 03:46:53 | INFO | main | 
+================================================================================
+2025-07-21 03:46:53 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 03:46:53 | INFO | main | ================================================================================
+2025-07-21 03:46:53 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 03:46:53 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 03:46:53 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 03:46:53 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 03:46:53 | INFO | main |    
+2025-07-21 03:46:53 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 03:46:53 | INFO | main |    Key business entities:
+2025-07-21 03:46:53 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 03:46:53 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 03:46:53 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 03:46:53 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 03:46:53 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 03:46:53 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 03:46:53 | INFO | main |    
+2025-07-21 03:46:53 | INFO | main |    ... (truncated)
+2025-07-21 03:46:53 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 03:46:53 | INFO | main | ================================================================================
+2025-07-21 03:46:53 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 03:46:53 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 03:46:53 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 03:57:21 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 03:57:21 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 03:57:21 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 03:57:21 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 03:57:21 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 03:57:41 | INFO | main | ✅ RAG client initialized
+2025-07-21 03:57:41 | INFO | main | 
+================================================================================
+2025-07-21 03:57:41 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 03:57:41 | INFO | main | ================================================================================
+2025-07-21 03:57:41 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 03:57:41 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 03:57:41 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 03:57:41 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 03:57:41 | INFO | main |    
+2025-07-21 03:57:41 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 03:57:41 | INFO | main |    Key business entities:
+2025-07-21 03:57:41 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 03:57:41 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 03:57:41 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 03:57:41 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 03:57:41 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 03:57:41 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 03:57:41 | INFO | main |    
+2025-07-21 03:57:41 | INFO | main |    ... (truncated)
+2025-07-21 03:57:41 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 03:57:41 | INFO | main | ================================================================================
+2025-07-21 03:57:41 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 03:57:41 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 03:57:41 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 04:04:11 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-21 04:04:11 | INFO | main | 🧹 Cleanup completed
+2025-07-21 04:04:11 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-21 16:28:59 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:28:59 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:28:59 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:28:59 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:28:59 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:30:28 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:30:28 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:30:28 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:30:28 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:30:28 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:36:33 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:36:33 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:36:33 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:36:33 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:36:33 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:36:53 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:36:53 | INFO | main | 
+================================================================================
+2025-07-21 16:36:53 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:36:53 | INFO | main | ================================================================================
+2025-07-21 16:36:53 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:36:53 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:36:53 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:36:53 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:36:53 | INFO | main |    
+2025-07-21 16:36:53 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:36:53 | INFO | main |    Key business entities:
+2025-07-21 16:36:53 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:36:53 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:36:53 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:36:53 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:36:53 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:36:53 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:36:53 | INFO | main |    
+2025-07-21 16:36:53 | INFO | main |    ... (truncated)
+2025-07-21 16:36:53 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:36:53 | INFO | main | ================================================================================
+2025-07-21 16:36:53 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:36:53 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:36:53 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:38:02 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-21 16:38:02 | INFO | main | 🧹 Cleanup completed
+2025-07-21 16:38:02 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-21 16:40:56 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:40:56 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:40:56 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:40:56 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:40:56 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:41:14 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:41:14 | INFO | main | 
+================================================================================
+2025-07-21 16:41:14 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:41:14 | INFO | main | ================================================================================
+2025-07-21 16:41:14 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:41:14 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:41:14 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:41:14 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:41:14 | INFO | main |    
+2025-07-21 16:41:14 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:41:14 | INFO | main |    Key business entities:
+2025-07-21 16:41:14 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:41:14 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:41:14 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:41:14 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:41:14 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:41:14 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:41:14 | INFO | main |    
+2025-07-21 16:41:14 | INFO | main |    ... (truncated)
+2025-07-21 16:41:14 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:41:14 | INFO | main | ================================================================================
+2025-07-21 16:41:14 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:41:14 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:41:14 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:43:50 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-21 16:43:50 | INFO | main | 🧹 Cleanup completed
+2025-07-21 16:43:50 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-21 16:43:56 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:43:56 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:43:56 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:43:56 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:43:56 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:44:14 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:44:14 | INFO | main | 
+================================================================================
+2025-07-21 16:44:14 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:44:14 | INFO | main | ================================================================================
+2025-07-21 16:44:14 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:44:14 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:44:14 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:44:14 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:44:14 | INFO | main |    
+2025-07-21 16:44:14 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:44:14 | INFO | main |    Key business entities:
+2025-07-21 16:44:14 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:44:14 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:44:14 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:44:14 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:44:14 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:44:14 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:44:14 | INFO | main |    
+2025-07-21 16:44:14 | INFO | main |    ... (truncated)
+2025-07-21 16:44:14 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:44:14 | INFO | main | ================================================================================
+2025-07-21 16:44:14 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:44:14 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:44:14 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:44:22 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:44:22 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:44:22 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:44:22 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:44:22 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:44:41 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:44:41 | INFO | main | 
+================================================================================
+2025-07-21 16:44:41 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:44:41 | INFO | main | ================================================================================
+2025-07-21 16:44:41 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:44:41 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:44:41 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:44:41 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:44:41 | INFO | main |    
+2025-07-21 16:44:41 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:44:41 | INFO | main |    Key business entities:
+2025-07-21 16:44:41 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:44:41 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:44:41 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:44:41 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:44:41 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:44:41 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:44:41 | INFO | main |    
+2025-07-21 16:44:41 | INFO | main |    ... (truncated)
+2025-07-21 16:44:41 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:44:41 | INFO | main | ================================================================================
+2025-07-21 16:44:41 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:44:41 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:44:41 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:44:49 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:44:49 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:44:49 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:44:49 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:44:49 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:45:08 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:45:08 | INFO | main | 
+================================================================================
+2025-07-21 16:45:08 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:45:08 | INFO | main | ================================================================================
+2025-07-21 16:45:08 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:45:08 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:45:08 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:45:08 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:45:08 | INFO | main |    
+2025-07-21 16:45:08 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:45:08 | INFO | main |    Key business entities:
+2025-07-21 16:45:08 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:45:08 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:45:08 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:45:08 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:45:08 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:45:08 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:45:08 | INFO | main |    
+2025-07-21 16:45:08 | INFO | main |    ... (truncated)
+2025-07-21 16:45:08 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:45:08 | INFO | main | ================================================================================
+2025-07-21 16:45:08 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:45:08 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:45:08 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:45:17 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:45:17 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:45:17 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:45:17 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:45:17 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:45:35 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:45:35 | INFO | main | 
+================================================================================
+2025-07-21 16:45:35 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:45:35 | INFO | main | ================================================================================
+2025-07-21 16:45:35 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:45:35 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:45:35 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:45:35 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:45:35 | INFO | main |    
+2025-07-21 16:45:35 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:45:35 | INFO | main |    Key business entities:
+2025-07-21 16:45:35 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:45:35 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:45:35 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:45:35 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:45:35 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:45:35 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:45:35 | INFO | main |    
+2025-07-21 16:45:35 | INFO | main |    ... (truncated)
+2025-07-21 16:45:35 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:45:35 | INFO | main | ================================================================================
+2025-07-21 16:45:35 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:45:35 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:45:35 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:45:43 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:45:43 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:45:43 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:45:43 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:45:43 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:46:03 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:46:03 | INFO | main | 
+================================================================================
+2025-07-21 16:46:03 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:46:03 | INFO | main | ================================================================================
+2025-07-21 16:46:03 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:46:03 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:46:03 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:46:03 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:46:03 | INFO | main |    
+2025-07-21 16:46:03 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:46:03 | INFO | main |    Key business entities:
+2025-07-21 16:46:03 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:46:03 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:46:03 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:46:03 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:46:03 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:46:03 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:46:03 | INFO | main |    
+2025-07-21 16:46:03 | INFO | main |    ... (truncated)
+2025-07-21 16:46:03 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:46:03 | INFO | main | ================================================================================
+2025-07-21 16:46:03 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:46:03 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:46:03 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:46:11 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:46:11 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:46:11 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:46:11 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:46:11 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:46:30 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:46:30 | INFO | main | 
+================================================================================
+2025-07-21 16:46:30 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:46:30 | INFO | main | ================================================================================
+2025-07-21 16:46:30 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:46:30 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:46:30 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:46:30 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:46:30 | INFO | main |    
+2025-07-21 16:46:30 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:46:30 | INFO | main |    Key business entities:
+2025-07-21 16:46:30 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:46:30 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:46:30 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:46:30 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:46:30 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:46:30 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:46:30 | INFO | main |    
+2025-07-21 16:46:30 | INFO | main |    ... (truncated)
+2025-07-21 16:46:30 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:46:30 | INFO | main | ================================================================================
+2025-07-21 16:46:30 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:46:30 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:46:30 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:46:37 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:46:37 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:46:37 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:46:37 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:46:37 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:46:56 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:46:56 | INFO | main | 
+================================================================================
+2025-07-21 16:46:56 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:46:56 | INFO | main | ================================================================================
+2025-07-21 16:46:56 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:46:56 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:46:56 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:46:56 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:46:56 | INFO | main |    
+2025-07-21 16:46:56 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:46:56 | INFO | main |    Key business entities:
+2025-07-21 16:46:56 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:46:56 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:46:56 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:46:56 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:46:56 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:46:56 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:46:56 | INFO | main |    
+2025-07-21 16:46:56 | INFO | main |    ... (truncated)
+2025-07-21 16:46:56 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:46:56 | INFO | main | ================================================================================
+2025-07-21 16:46:56 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:46:56 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:46:56 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:48:39 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-21 16:48:39 | INFO | main | 🧹 Cleanup completed
+2025-07-21 16:48:39 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-21 16:48:45 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:48:45 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:48:45 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:48:45 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:48:45 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:49:04 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:49:04 | INFO | main | 
+================================================================================
+2025-07-21 16:49:04 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:49:04 | INFO | main | ================================================================================
+2025-07-21 16:49:04 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:49:04 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:49:04 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:49:04 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:49:04 | INFO | main |    
+2025-07-21 16:49:04 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:49:04 | INFO | main |    Key business entities:
+2025-07-21 16:49:04 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:49:04 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:49:04 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:49:04 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:49:04 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:49:04 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:49:04 | INFO | main |    
+2025-07-21 16:49:04 | INFO | main |    ... (truncated)
+2025-07-21 16:49:04 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:49:04 | INFO | main | ================================================================================
+2025-07-21 16:49:04 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:49:04 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:49:04 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:49:11 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:49:11 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:49:11 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:49:11 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:49:11 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:49:30 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:49:30 | INFO | main | 
+================================================================================
+2025-07-21 16:49:30 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:49:30 | INFO | main | ================================================================================
+2025-07-21 16:49:30 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:49:30 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:49:30 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:49:30 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:49:30 | INFO | main |    
+2025-07-21 16:49:30 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:49:30 | INFO | main |    Key business entities:
+2025-07-21 16:49:30 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:49:30 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:49:30 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:49:30 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:49:30 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:49:30 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:49:30 | INFO | main |    
+2025-07-21 16:49:30 | INFO | main |    ... (truncated)
+2025-07-21 16:49:30 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:49:30 | INFO | main | ================================================================================
+2025-07-21 16:49:30 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:49:30 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:49:30 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-21 16:49:39 | INFO | app | 🚀 Starting SQL Retriever API...
+2025-07-21 16:49:39 | INFO | main | 🚀 Initializing CRM SQL Retriever Bot...
+2025-07-21 16:49:39 | INFO | main | 📊 Connecting to CRM database...
+2025-07-21 16:49:39 | INFO | main | ✅ Connected to CRM database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:49:39 | INFO | main | 🎯 Initializing RAG client...
+2025-07-21 16:49:57 | INFO | main | ✅ RAG client initialized
+2025-07-21 16:49:57 | INFO | main | 
+================================================================================
+2025-07-21 16:49:57 | INFO | main | 🎉 CRM SQL Retriever Bot - Successfully Initialized!
+2025-07-21 16:49:57 | INFO | main | ================================================================================
+2025-07-21 16:49:57 | INFO | main | 📊 Database: /home/risad/projects/sql_retriever/data/test_crm_v1.db
+2025-07-21 16:49:57 | INFO | main | 🎯 RAG Enabled: True
+2025-07-21 16:49:57 | INFO | main | 🛡️ Safety Checks: True
+2025-07-21 16:49:57 | INFO | main | 
+📋 CRM Database Schema:
+2025-07-21 16:49:57 | INFO | main |    
+2025-07-21 16:49:57 | INFO | main |    This is a CRM (Customer Relationship Management) database for a company that sells products.
+2025-07-21 16:49:57 | INFO | main |    Key business entities:
+2025-07-21 16:49:57 | INFO | main |    - Customers: Companies/individuals who buy products
+2025-07-21 16:49:57 | INFO | main |    - Products: Items sold by the company, organized into product lines
+2025-07-21 16:49:57 | INFO | main |    - Orders: Purchase orders from customers
+2025-07-21 16:49:57 | INFO | main |    - Employees: Company staff who manage sales and operations
+2025-07-21 16:49:57 | INFO | main |    - Offices: Company locations where employees work
+2025-07-21 16:49:57 | INFO | main |    - Payments: Customer payments for orders
+2025-07-21 16:49:57 | INFO | main |    
+2025-07-21 16:49:57 | INFO | main |    ... (truncated)
+2025-07-21 16:49:57 | INFO | main | 
+🚀 Ready to process queries!
+2025-07-21 16:49:57 | INFO | main | ================================================================================
+2025-07-21 16:49:57 | INFO | app | ✅ CRM SQL Retriever initialized successfully
+2025-07-21 16:49:57 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-21 16:49:57 | INFO | app | 🎉 SQL Retriever API ready!

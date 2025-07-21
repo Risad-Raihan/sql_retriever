@@ -5,7 +5,6 @@ import sqlparse
 from typing import Dict, List, Optional, Set, Tuple, Any
 from enum import Enum
 
-from config import SAFETY_CONFIG, USER_ROLES
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -47,7 +46,10 @@ class QueryValidator:
         Args:
             config: Configuration dictionary, defaults to SAFETY_CONFIG
         """
-        self.config = config or SAFETY_CONFIG
+        self.config = config or {
+            'forbidden_keywords': ['DROP', 'EXEC', 'EXECUTE', 'SP_EXECUTESQL', 'XP_CMDSHELL', 'OPENROWSET', 'OPENDATASOURCE'],
+            'require_confirmation': ['INSERT', 'UPDATE', 'DELETE', 'DROP', 'TRUNCATE']
+        }
         self.forbidden_keywords = set(kw.upper() for kw in self.config['forbidden_keywords'])
         
     def validate_query(self, query: str, user_role: str = 'user') -> ValidationResult:
@@ -185,7 +187,14 @@ class QueryValidator:
             ValidationResult object
         """
         try:
-            role_config = USER_ROLES.get(user_role, USER_ROLES['user'])
+            # In a real application, USER_ROLES would be defined elsewhere
+            # For now, we'll use a placeholder or a default role
+            role_config = {
+                'viewer': {'allowed_operations': ['SELECT']},
+                'user': {'allowed_operations': ['SELECT', 'INSERT', 'UPDATE', 'DELETE']},
+                'admin': {'allowed_operations': ['SELECT', 'INSERT', 'UPDATE', 'DELETE', 'DROP', 'TRUNCATE']}
+            }
+            role_config = role_config.get(user_role, role_config['user'])
             allowed_operations = role_config['allowed_operations']
             
             if query_type.value not in allowed_operations:

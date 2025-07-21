@@ -195,64 +195,6 @@ class CRMSQLRetriever:
         
         return stats
     
-    def interactive_mode(self):
-        """Run in interactive mode for testing."""
-        print("\n" + "="*80)
-        print("🎉 CRM SQL Retriever Bot - Interactive Mode")
-        print("="*80)
-        print(f"📊 Connected to CRM Database: {DATABASE_PATH}")
-        print(f"🎯 RAG Enabled: {RAG_ENABLED}")
-        print(f"🛡️ Safety Checks: {ENABLE_SAFETY_CHECKS}")
-        print("\nType your questions in natural language. Type 'quit' to exit.")
-        print("="*80)
-        
-        while True:
-            try:
-                question = input("\n🤔 Your question: ").strip()
-                
-                if question.lower() in ['quit', 'exit', 'q']:
-                    break
-                
-                if not question:
-                    continue
-                
-                # Process the query
-                result = self.process_query(question)
-                
-                # Display results
-                if result['success']:
-                    print(f"\n✅ Success! ({result['method']})")
-                    print(f"📊 SQL: {result['sql_query']}")
-                    print(f"📈 Results: {result['result_count']} rows")
-                    print(f"⏱️  Time: {result['processing_time']:.3f}s")
-                    
-                    # Show first few results
-                    if result['results']:
-                        print(f"\n📋 Sample Results:")
-                        formatted_results = self.response_formatter.format_table_data(
-                            result['results'][:5]  # Show first 5 rows
-                        )
-                        print(formatted_results)
-                        
-                        if len(result['results']) > 5:
-                            print(f"... and {len(result['results']) - 5} more rows")
-                else:
-                    print(f"\n❌ Error: {result['error']}")
-                    if result.get('sql_query'):
-                        print(f"📊 Generated SQL: {result['sql_query']}")
-                
-            except KeyboardInterrupt:
-                break
-            except Exception as e:
-                print(f"\n❌ Unexpected error: {e}")
-        
-        # Show final statistics
-        stats = self.get_statistics()
-        print(f"\n📊 Session Statistics:")
-        print(f"   Total Queries: {stats['total_queries']}")
-        print(f"   Average Time: {stats['average_processing_time']:.3f}s")
-        print("\n👋 Goodbye!")
-    
     def cleanup(self):
         """Clean up resources."""
         try:
@@ -260,25 +202,4 @@ class CRMSQLRetriever:
                 self.db.disconnect()
             logger.info("🧹 Cleanup completed")
         except Exception as e:
-            logger.error(f"❌ Cleanup error: {e}")
-
-def main():
-    """Main entry point."""
-    try:
-        # Create and initialize the SQL retriever
-        retriever = CRMSQLRetriever()
-        
-        # Always run in interactive mode
-        retriever.interactive_mode()
-        
-        # Cleanup
-        retriever.cleanup()
-        
-    except KeyboardInterrupt:
-        print("\n\n👋 Interrupted by user")
-    except Exception as e:
-        logger.error(f"❌ Application error: {e}")
-        sys.exit(1)
-
-if __name__ == "__main__":
-    main() 
+            logger.error(f"❌ Cleanup error: {e}") 

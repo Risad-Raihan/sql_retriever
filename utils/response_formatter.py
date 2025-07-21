@@ -4,8 +4,6 @@ import json
 from typing import Any, Dict, List, Optional, Union
 from tabulate import tabulate
 
-from config import RESPONSE_CONFIG
-
 
 class ResponseFormatter:
     """Formats SQL query results into human-readable responses."""
@@ -14,9 +12,18 @@ class ResponseFormatter:
         """Initialize response formatter.
         
         Args:
-            config: Configuration dictionary, defaults to RESPONSE_CONFIG
+            config: Configuration dictionary with formatting options
         """
-        self.config = config or RESPONSE_CONFIG
+        # Default configuration
+        default_config = {
+            'max_table_rows': 50,
+            'table_format': 'grid',
+            'include_query_time': True,
+            'include_row_count': True,
+            'truncate_long_text': True,
+            'max_text_length': 100
+        }
+        self.config = config or default_config
     
     def format_query_results(
         self, 
