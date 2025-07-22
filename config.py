@@ -3,8 +3,9 @@ from pathlib import Path
 from typing import Dict, List, Any
 
 # Database Configuration
-DATABASE_PATH = os.path.join(os.path.dirname(__file__), "data", "test_crm_v1.db")
-DATABASE_TYPE = "sqlite"
+DATABASE_PATH = os.getenv("DATABASE_PATH", os.path.join(os.path.dirname(__file__), "data", "test_crm_v1.db"))
+DATABASE_TYPE = os.getenv("DATABASE_TYPE", "sqlite")
+DATABASE_URL = os.getenv("DATABASE_URL")  # For PostgreSQL connections
 
 # LLM Configuration
 MODEL_NAME = "unsloth/Llama-3.2-3B-Instruct"

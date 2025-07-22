@@ -14,7 +14,7 @@ from typing import Dict, Any, Optional
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from database.connection import DatabaseConnection
-from llm.rag_client import RAGSQLClient
+from llm.runpod_client import LLMClient
 from utils.logger import get_logger
 from utils.response_formatter import ResponseFormatter
 from config import (
@@ -38,7 +38,7 @@ class CRMSQLRetriever:
         
         # Initialize components
         self.db = None
-        self.rag_client = None
+        self.llm_client = None
         self.response_formatter = ResponseFormatter()
         
         # Processing stats
@@ -56,11 +56,11 @@ class CRMSQLRetriever:
             self.db.connect()
             logger.info(f"✅ Connected to CRM database: {DATABASE_PATH}")
             
-            # Initialize RAG client
+            # Initialize LLM client (Runpod)
             if RAG_ENABLED:
-                logger.info("🎯 Initializing RAG client...")
-                self.rag_client = RAGSQLClient()
-                logger.info("✅ RAG client initialized")
+                logger.info("🎯 Initializing Runpod LLM client...")
+                self.llm_client = LLMClient()
+                logger.info("✅ Runpod LLM client initialized")
             
             # Display system info
             self._display_system_info()
@@ -108,19 +108,29 @@ class CRMSQLRetriever:
             sql_result = None
             processing_method = "none"
             
-            if RAG_ENABLED and self.rag_client:
-                logger.info("🎯 Using RAG for SQL generation...")
-                rag_result = self.rag_client.generate_sql(question, schema_info)
+            if RAG_ENABLED and self.llm_client:
+                logger.info("🎯 Using Runpod LLM for SQL generation...")
                 
-                if rag_result.get('sql_query'):
+                # Build prompt with schema context
+                prompt = f"""You are a SQL expert for a CRM database. Generate a SQL query based on this question.
+
+{schema_info}
+
+Question: {question}
+
+Generate only the SQL query, no explanations:"""
+                
+                sql_query = self.llm_client.generate(prompt, max_tokens=200, temperature=0.1)
+                
+                if sql_query and sql_query.strip():
                     sql_result = {
-                        'sql_query': rag_result['sql_query'],
-                        'method': 'rag',
-                        'confidence': rag_result.get('confidence', 0.0),
-                        'similar_examples_count': rag_result.get('similar_examples_count', 0),
-                        'processing_time': rag_result.get('processing_time', 0.0)
+                        'sql_query': sql_query.strip(),
+                        'method': 'runpod',
+                        'confidence': 0.8,  # Default confidence
+                        'similar_examples_count': 0,
+                        'processing_time': 0.0
                     }
-                    processing_method = f"🎯 RAG ({rag_result.get('method_used', 'unknown')})"
+                    processing_method = "🚀 Runpod LLM"
             
             if not sql_result:
                 return {
@@ -157,12 +167,9 @@ class CRMSQLRetriever:
             if sql_result.get('method') == 'rag':
                 response['similar_examples_count'] = sql_result.get('similar_examples_count', 0)
             
-            # Learn from successful interaction if RAG enabled
-            if RAG_ENABLED and self.rag_client and query_results:
-                self.rag_client.learn_from_interaction(
-                    question, sql_query, True, 
-                    f"Successful query returning {len(query_results)} results"
-                )
+            # Log successful interaction for future learning
+            if RAG_ENABLED and query_results:
+                logger.info(f"📝 Successful query logged: {len(query_results)} results")
             
             logger.info(f"✅ Query completed: {len(query_results)} results in {processing_time:.3f}s")
             return response

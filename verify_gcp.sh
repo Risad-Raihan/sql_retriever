@@ -437,8 +437,8 @@ if BILLING_ACCOUNT=$(gcloud beta billing projects describe "$PROJECT_ID" --forma
         pass "Forecasted spend monitoring enabled"
     else
         info "Consider enabling forecasted spend monitoring"
-    fi
-    
+fi
+
     # Estimate current resource costs
     log "Analyzing current resource costs..."
     

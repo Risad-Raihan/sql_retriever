@@ -243,7 +243,7 @@ if gsutil ls -b "gs://$BUCKET_NAME" &> /dev/null; then
 else
     # Check if bucket name is globally unique
     if gsutil ls -b "gs://$BUCKET_NAME" 2>&1 | grep -q "BucketNotFound"; then
-        gsutil mb -l "$REGION" "gs://$BUCKET_NAME"
+    gsutil mb -l "$REGION" "gs://$BUCKET_NAME"
         log "✅ Created bucket gs://$BUCKET_NAME"
     else
         error "Bucket name '$BUCKET_NAME' is already taken. Please choose a unique name in gcp_config.yaml"
@@ -331,7 +331,7 @@ else
         if ! gcloud sql import sql "$SQL_INSTANCE" "gs://$BUCKET_NAME/db/db_dump.sql" \
             --database="$SQL_DATABASE"; then
             warn "Database import failed. You may need to import manually."
-        else
+else
             log "✅ Database imported successfully"
         fi
     fi
@@ -403,7 +403,7 @@ log "Estimated cost: \$5-20/month (varies by usage)"
 # Create environment variables
 if [ "$USE_SECRET_MANAGER" = "true" ]; then
     DATABASE_URL="postgresql://$SQL_USER:\$SQL_PASSWORD_SECRET@//cloudsql/$CONNECTION_STRING/$SQL_DATABASE"
-    ENV_VARS="DATABASE_PATH=$DATABASE_URL,RAG_VECTOR_STORE_PATH=gs://$BUCKET_NAME/rag,MODEL_NAME=$(get_config 'model_name'),LOG_LEVEL=$(get_config 'log_level'),ENVIRONMENT=$(get_config 'environment'),RAG_ENABLED=true,ENABLE_SAFETY_CHECKS=true,SQL_PUBLIC_IP=$SQL_PUBLIC_IP"
+    ENV_VARS="DATABASE_URL=$DATABASE_URL,DATABASE_TYPE=postgresql,RAG_VECTOR_STORE_PATH=gs://$BUCKET_NAME/rag,MODEL_NAME=$(get_config 'model_name'),LOG_LEVEL=$(get_config 'log_level'),ENVIRONMENT=$(get_config 'environment'),RAG_ENABLED=true,ENABLE_SAFETY_CHECKS=true,SQL_PUBLIC_IP=$SQL_PUBLIC_IP"
     
     if [ -n "$MODEL_ENDPOINT" ] && [ "$MODEL_ENDPOINT" != "your_runpod_endpoint_here" ]; then
         ENV_VARS="$ENV_VARS,MODEL_ENDPOINT=$MODEL_ENDPOINT"
@@ -424,25 +424,25 @@ if [ "$USE_SECRET_MANAGER" = "true" ]; then
         --set-secrets="API_KEY=$API_KEY_REF:latest,SQL_PASSWORD_SECRET=$SQL_PASSWORD_REF:latest" \
         --add-cloudsql-instances="$CONNECTION_STRING"
 else
-    DATABASE_URL="postgresql://$SQL_USER:$SQL_PASSWORD@//cloudsql/$CONNECTION_STRING/$SQL_DATABASE"
-    ENV_VARS="DATABASE_PATH=$DATABASE_URL,RAG_VECTOR_STORE_PATH=gs://$BUCKET_NAME/rag,API_KEY=$API_KEY,MODEL_NAME=$(get_config 'model_name'),LOG_LEVEL=$(get_config 'log_level'),ENVIRONMENT=$(get_config 'environment'),RAG_ENABLED=true,ENABLE_SAFETY_CHECKS=true,SQL_PUBLIC_IP=$SQL_PUBLIC_IP"
+DATABASE_URL="postgresql://$SQL_USER:$SQL_PASSWORD@//cloudsql/$CONNECTION_STRING/$SQL_DATABASE"
+    ENV_VARS="DATABASE_URL=$DATABASE_URL,DATABASE_TYPE=postgresql,RAG_VECTOR_STORE_PATH=gs://$BUCKET_NAME/rag,API_KEY=$API_KEY,MODEL_NAME=$(get_config 'model_name'),LOG_LEVEL=$(get_config 'log_level'),ENVIRONMENT=$(get_config 'environment'),RAG_ENABLED=true,ENABLE_SAFETY_CHECKS=true,SQL_PUBLIC_IP=$SQL_PUBLIC_IP"
     
     if [ -n "$MODEL_ENDPOINT" ] && [ "$MODEL_ENDPOINT" != "your_runpod_endpoint_here" ]; then
         ENV_VARS="$ENV_VARS,MODEL_ENDPOINT=$MODEL_ENDPOINT"
     fi
-    
-    gcloud run deploy "$SERVICE_NAME" \
-        --image="$IMAGE_URL" \
-        --platform=managed \
-        --region="$REGION" \
-        --allow-unauthenticated \
-        --memory="$SERVICE_MEMORY" \
-        --cpu="$SERVICE_CPU" \
-        --min-instances="$SERVICE_MIN_INSTANCES" \
-        --max-instances="$SERVICE_MAX_INSTANCES" \
-        --timeout="$SERVICE_TIMEOUT" \
+
+gcloud run deploy "$SERVICE_NAME" \
+    --image="$IMAGE_URL" \
+    --platform=managed \
+    --region="$REGION" \
+    --allow-unauthenticated \
+    --memory="$SERVICE_MEMORY" \
+    --cpu="$SERVICE_CPU" \
+    --min-instances="$SERVICE_MIN_INSTANCES" \
+    --max-instances="$SERVICE_MAX_INSTANCES" \
+    --timeout="$SERVICE_TIMEOUT" \
         --set-env-vars="$ENV_VARS" \
-        --add-cloudsql-instances="$CONNECTION_STRING"
+    --add-cloudsql-instances="$CONNECTION_STRING"
 fi
 
 # Get the service URL
@@ -515,15 +515,15 @@ log "💰 Setting up cost monitoring..."
 BILLING_ACCOUNT=$(gcloud beta billing projects describe $PROJECT_ID --format="value(billingAccountName)" | sed 's/.*\///' 2>/dev/null || echo "")
 
 if [ -n "$BILLING_ACCOUNT" ]; then
-    # Create budget alert
-    gcloud beta billing budgets create \
+# Create budget alert
+gcloud beta billing budgets create \
         --billing-account="$BILLING_ACCOUNT" \
-        --display-name="SQL Retriever Budget Alert" \
-        --budget-amount=$(get_config 'daily_spend_limit')USD \
-        --threshold-rules-percent=50,90,100 \
-        --threshold-rules-spend-basis=CURRENT_SPEND \
-        --all-projects || warn "Could not create budget alert. Please set up manually in console."
-    
+    --display-name="SQL Retriever Budget Alert" \
+    --budget-amount=$(get_config 'daily_spend_limit')USD \
+    --threshold-rules-percent=50,90,100 \
+    --threshold-rules-spend-basis=CURRENT_SPEND \
+    --all-projects || warn "Could not create budget alert. Please set up manually in console."
+
     log "✅ Budget alert created for \$$(get_config 'daily_spend_limit')/day"
 else
     warn "Could not access billing account. Please set up budget alerts manually."
@@ -570,8 +570,8 @@ echo "==================== IMPORTANT NOTES ===================="
 if [ "$USE_SECRET_MANAGER" = "true" ]; then
     warn "Secrets stored in Secret Manager (recommended for production)"
 else
-    warn "API Key: $API_KEY (Keep this secure!)"
-    warn "Database Password: $SQL_PASSWORD (Keep this secure!)"
+warn "API Key: $API_KEY (Keep this secure!)"
+warn "Database Password: $SQL_PASSWORD (Keep this secure!)"
     warn "Consider enabling Secret Manager for production deployments"
 fi
 warn "Make sure to update these in your CI/CD pipeline securely"
