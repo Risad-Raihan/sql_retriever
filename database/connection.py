@@ -21,7 +21,19 @@ class DatabaseConnection:
             self.connection_string = db_path_or_url
         elif DATABASE_URL:
             # Use PostgreSQL connection URL from environment
-            self.connection_string = DATABASE_URL
+            if "cloudsql" in DATABASE_URL:
+                # Fix Cloud SQL connection format
+                # Convert from postgresql://user:pass@//cloudsql/project:region:instance/db
+                # To postgresql://user:pass@/db?host=/cloudsql/project:region:instance
+                import re
+                match = re.match(r'postgresql://([^@]+)@//cloudsql/([^/]+)/(.+)', DATABASE_URL)
+                if match:
+                    user_pass, instance_connection, db_name = match.groups()
+                    self.connection_string = f"postgresql://{user_pass}@/{db_name}?host=/cloudsql/{instance_connection}"
+                else:
+                    self.connection_string = DATABASE_URL
+            else:
+                self.connection_string = DATABASE_URL
             self.db_type = "postgresql"
         else:
             # Use SQLite file path
