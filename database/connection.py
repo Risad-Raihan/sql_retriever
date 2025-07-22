@@ -64,7 +64,7 @@ class DatabaseConnection:
                     tables = [row[0] for row in result.fetchall()]
                 
                 # Validate expected CRM tables exist
-                expected_tables = set(CRM_TABLES.keys())
+                expected_tables = set(CRM_TABLES)
                 actual_tables = set(tables)
                 
                 if not expected_tables.issubset(actual_tables):
@@ -158,7 +158,7 @@ class DatabaseConnection:
             else:
                 # Get all tables info
                 tables_info = {}
-                for table in CRM_TABLES.keys():
+                for table in CRM_TABLES:
                     try:
                         tables_info[table] = self.get_table_info(table)
                     except Exception as e:
