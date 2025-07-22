@@ -1,9 +1,9 @@
 """LLM integration modules for SQL retriever bot."""
 
-from .rag_client import RAGSQLClient, RAGVectorStore, SQLExample
+from .runpod_client import LLMClient, RunpodLLMClient, RunpodEmbeddingClient
  
 __all__ = [
-    'RAGSQLClient',
-    'RAGVectorStore', 
-    'SQLExample'
+    'LLMClient',
+    'RunpodLLMClient',
+    'RunpodEmbeddingClient'
 ] 
