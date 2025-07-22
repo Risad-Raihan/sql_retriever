@@ -95,13 +95,13 @@ class DatabaseConnection:
         
         try:
             with self.engine.connect() as conn:
-            if params:
+                if params:
                     result = conn.execute(text(query), params)
-            else:
+                else:
                     result = conn.execute(text(query))
-            
+                
                 # Convert results to list of dictionaries
-            results = []
+                results = []
                 if result.returns_rows:
                     columns = result.keys()
                     rows = result.fetchall()
