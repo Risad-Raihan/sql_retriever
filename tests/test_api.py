@@ -24,7 +24,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app import app
 from main import CRMSQLRetriever
 from database.connection import DatabaseConnection
-from llm.rag_client import RAGSQLClient
+from llm.runpod_client import LLMClient
 from models import QueryRequest, QueryResponse, HealthResponse
 
 # Test configuration
@@ -96,7 +96,7 @@ def mock_retriever():
     """Mock CRMSQLRetriever for testing."""
     retriever = Mock(spec=CRMSQLRetriever)
     retriever.db = Mock(spec=DatabaseConnection)
-    retriever.rag_client = Mock(spec=RAGSQLClient)
+    retriever.rag_client = Mock(spec=LLMClient)
     retriever.cleanup = Mock()
     
     # Mock successful query response
