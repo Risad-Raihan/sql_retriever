@@ -52,9 +52,9 @@ class CRMSQLRetriever:
         try:
             # Initialize database connection
             logger.info("📊 Connecting to CRM database...")
-            self.db = DatabaseConnection(DATABASE_PATH)
+            self.db = DatabaseConnection()
             self.db.connect()
-            logger.info(f"✅ Connected to CRM database: {DATABASE_PATH}")
+            logger.info(f"✅ Connected to CRM database")
             
             # Initialize LLM client (Runpod)
             if RAG_ENABLED:
