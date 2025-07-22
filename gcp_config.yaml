@@ -7,7 +7,7 @@ region: "us-central1"
 zone: "us-central1-a"
 
 # Cloud Storage Configuration
-bucket_name: "sql-retriever-storage-heroic-overview"
+bucket_name: "sql-retriever-ztrios-20250721-140749-dc4331c2"
 bucket_class: "STANDARD"
 
 # Cloud SQL Configuration

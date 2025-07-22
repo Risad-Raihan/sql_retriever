@@ -18,7 +18,7 @@ from llm.runpod_client import LLMClient
 from utils.logger import get_logger
 from utils.response_formatter import ResponseFormatter
 from config import (
-    DATABASE_PATH, RAG_ENABLED, ENABLE_SAFETY_CHECKS,
+    RAG_ENABLED, ENABLE_SAFETY_CHECKS,
     CRM_BUSINESS_CONTEXT, LOG_LEVEL
 )
 
@@ -74,7 +74,7 @@ class CRMSQLRetriever:
         logger.info("\n" + "="*80)
         logger.info("🎉 CRM SQL Retriever Bot - Successfully Initialized!")
         logger.info("="*80)
-        logger.info(f"📊 Database: {DATABASE_PATH}")
+        logger.info(f"📊 Database: {self.db.db_type.upper()} connection")
         logger.info(f"🎯 RAG Enabled: {RAG_ENABLED}")
         logger.info(f"🛡️ Safety Checks: {ENABLE_SAFETY_CHECKS}")
         
@@ -195,7 +195,7 @@ Generate only the SQL query, no explanations:"""
             'total_queries': self.query_count,
             'total_processing_time': self.total_processing_time,
             'average_processing_time': avg_time,
-            'database_path': DATABASE_PATH,
+            'database_path': self.db.db_type.upper() + " connection",
             'rag_enabled': RAG_ENABLED,
             'safety_checks_enabled': ENABLE_SAFETY_CHECKS
         }

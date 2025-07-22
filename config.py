@@ -28,47 +28,28 @@ BLOCKED_KEYWORDS = ["DROP", "DELETE", "UPDATE", "INSERT", "ALTER", "CREATE", "TR
 LOG_LEVEL = "INFO"
 LOG_FILE = "sql_retriever_bot.log"
 
-# CRM Database Schema Information
-CRM_TABLES = {
-    "productlines": ["productLine", "textDescription", "htmlDescription", "image"],
-    "products": ["productCode", "productName", "productLine", "productScale", "productVendor", 
-                "productDescription", "quantityInStock", "buyPrice", "MSRP"],
-    "offices": ["officeCode", "city", "phone", "addressLine1", "addressLine2", "state", 
-               "country", "postalCode", "territory"],
-    "employees": ["employeeNumber", "lastName", "firstName", "extension", "email", 
-                 "officeCode", "reportsTo", "jobTitle"],
-    "customers": ["customerNumber", "customerName", "contactLastName", "contactFirstName", 
-                 "phone", "addressLine1", "addressLine2", "city", "state", "postalCode", 
-                 "country", "salesRepEmployeeNumber", "creditLimit"],
-    "payments": ["customerNumber", "checkNumber", "paymentDate", "amount"],
-    "orders": ["orderNumber", "orderDate", "requiredDate", "shippedDate", "status", 
-              "comments", "customerNumber"],
-    "orderdetails": ["orderNumber", "productCode", "quantityOrdered", "priceEach", 
-                    "orderLineNumber"]
+# Add missing configurations
+LOGGING_CONFIG = {
+    'level': LOG_LEVEL,
+    'log_file': LOG_FILE,
+    'format': '%(asctime)s | %(levelname)s | %(name)s | %(message)s'
 }
 
 # CRM Business Context
-CRM_BUSINESS_CONTEXT = """
-This is a CRM (Customer Relationship Management) database for a company that sells products.
-Key business entities:
-- Customers: Companies/individuals who buy products
-- Products: Items sold by the company, organized into product lines
-- Orders: Purchase orders from customers
-- Employees: Company staff who manage sales and operations
-- Offices: Company locations where employees work
-- Payments: Customer payments for orders
-"""
-
-# Logging Configuration
-LOGGING_CONFIG = {
-    'level': 'INFO',
-    'format': '{time:YYYY-MM-DD HH:mm:ss} | {level} | {name} | {message}',
-    'rotation': '1 week',
-    'retention': '1 month',
-    'log_file': 'sql_retriever_bot.log'
+CRM_BUSINESS_CONTEXT = {
+    "description": "Customer Relationship Management system for tracking customers, orders, employees, products, offices, and payments.",
+    "tables": {
+        "customers": "Customer information and contact details",
+        "orders": "Customer purchase orders",
+        "employees": "Company staff and sales representatives", 
+        "products": "Product catalog and inventory",
+        "offices": "Company office locations",
+        "payments": "Customer payment records"
+    }
 }
 
-# Environment variable overrides
-MODEL_NAME = os.getenv('MODEL_NAME', MODEL_NAME)
-DATABASE_PATH = os.getenv('DATABASE_PATH', DATABASE_PATH)
-LOG_LEVEL = os.getenv('LOG_LEVEL', LOG_LEVEL) 
+# CRM Tables configuration
+CRM_TABLES = [
+    "customers", "orders", "orderdetails", "products", "productlines", 
+    "employees", "offices", "payments"
+] 

@@ -27,7 +27,7 @@ from models import (
     QueryRequest, QueryResponse, LearnRequest, LearnResponse,
     HealthResponse, SchemaResponse, StatsResponse, ErrorResponse
 )
-from config import DATABASE_PATH, RAG_ENABLED
+from config import RAG_ENABLED
 
 # Initialize logger
 logger = get_logger(__name__)
@@ -170,7 +170,7 @@ async def health_check():
         return HealthResponse(
             status=status,
             db_connected=db_connected,
-            rag_enabled=RAG_ENABLED and retriever.rag_client is not None,
+            rag_enabled=RAG_ENABLED and hasattr(retriever, 'llm_client') and retriever.llm_client is not None,
             details={
                 "uptime_seconds": time.time() - app_state.get("startup_time", 0),
                 "total_queries": stats.get("total_queries", 0),
@@ -369,6 +369,34 @@ async def root():
         "docs": "/docs",
         "health": "/health"
     }
+
+# Debug endpoint (temporary) 
+@app.get("/debug", tags=["Debug"])
+async def debug_info():
+    """Debug endpoint to check environment and database connection."""
+    debug_data = {
+        "environment_vars": {
+            "DATABASE_URL": "***" if os.getenv("DATABASE_URL") else None,
+            "DATABASE_TYPE": os.getenv("DATABASE_TYPE"),
+            "API_KEY": "***" if os.getenv("API_KEY") else None,
+            "RAG_ENABLED": os.getenv("RAG_ENABLED"),
+            "PORT": os.getenv("PORT")
+        },
+        "retriever_status": "initialized" if app_state.get("retriever") else "not_initialized"
+    }
+    
+    retriever = app_state.get("retriever")
+    if retriever and retriever.db:
+        try:
+            # Test basic database connection
+            result = retriever.db.execute_query("SELECT 1 as test")
+            debug_data["database_test"] = "success"
+            debug_data["database_type"] = retriever.db.db_type
+        except Exception as e:
+            debug_data["database_test"] = f"failed: {str(e)}"
+            debug_data["database_error"] = str(e)
+    
+    return debug_data
 
 if __name__ == "__main__":
     # Development server
