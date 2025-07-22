@@ -148,7 +148,7 @@ class DatabaseConnection:
                 tables_info = {}
                 for table in CRM_TABLES.keys():
                     try:
-                    tables_info[table] = self.get_table_info(table)
+                        tables_info[table] = self.get_table_info(table)
                     except Exception as e:
                         logger.warning(f"Could not get info for table {table}: {e}")
                 
@@ -209,10 +209,10 @@ class DatabaseConnection:
         if self.db_type == "sqlite":
             schema_parts.extend([
                 "\n📈 Common Analytical Patterns (SQLite):",
-            "- Total revenue: SUM(od.quantityOrdered * od.priceEach) FROM orderdetails od",
-            "- Monthly trends: GROUP BY STRFTIME('%Y-%m', o.orderDate)",
-            "- Top customers: ORDER BY SUM(revenue) DESC LIMIT N",
-            "- Employee performance: JOIN customers c ON e.employeeNumber = c.salesRepEmployeeNumber"
+                "- Total revenue: SUM(od.quantityOrdered * od.priceEach) FROM orderdetails od",
+                "- Monthly trends: GROUP BY STRFTIME('%Y-%m', o.orderDate)",
+                "- Top customers: ORDER BY SUM(revenue) DESC LIMIT N",
+                "- Employee performance: JOIN customers c ON e.employeeNumber = c.salesRepEmployeeNumber"
             ])
         else:  # PostgreSQL
             schema_parts.extend([
@@ -231,35 +231,35 @@ class DatabaseConnection:
             
             for table_name, expected_columns in CRM_TABLES.items():
                 try:
-                # Get table schema
+                    # Get table schema
                     columns_info = inspector.get_columns(table_name)
                 
-                # Get row count
+                    # Get row count
                     with self.engine.connect() as conn:
                         result = conn.execute(text(f"SELECT COUNT(*) FROM {table_name}"))
                         row_count = result.scalar()
                 
-                schema_parts.append(f"\n📋 {table_name.upper()} ({row_count} rows):")
-                for col_info in columns_info:
+                    schema_parts.append(f"\n📋 {table_name.upper()} ({row_count} rows):")
+                    for col_info in columns_info:
                         col_name = col_info['name']
                         col_type = str(col_info['type'])
                         nullable = "NULL" if col_info['nullable'] else "NOT NULL"
-                    schema_parts.append(f"  - {col_name}: {col_type} {nullable}")
+                        schema_parts.append(f"  - {col_name}: {col_type} {nullable}")
                     
-                # Add specific guidance for key tables
-                if table_name == "orderdetails":
-                    schema_parts.append("  💡 Key for revenue: quantityOrdered * priceEach")
-                elif table_name == "orders":
+                    # Add specific guidance for key tables
+                    if table_name == "orderdetails":
+                        schema_parts.append("  💡 Key for revenue: quantityOrdered * priceEach")
+                    elif table_name == "orders":
                         if self.db_type == "sqlite":
-                    schema_parts.append("  💡 Date operations: STRFTIME('%Y', orderDate) for year")
+                            schema_parts.append("  💡 Date operations: STRFTIME('%Y', orderDate) for year")
                         else:
                             schema_parts.append("  💡 Date operations: EXTRACT(YEAR FROM orderDate) for year")
-                elif table_name == "products":
-                    schema_parts.append("  💡 Pricing: MSRP (retail), buyPrice (cost)")
-                elif table_name == "customers":
-                    schema_parts.append("  💡 Links to employees via salesRepEmployeeNumber")
-                elif table_name == "employees":
-                    schema_parts.append("  💡 Performance via customer relationships")
+                    elif table_name == "products":
+                        schema_parts.append("  💡 Pricing: MSRP (retail), buyPrice (cost)")
+                    elif table_name == "customers":
+                        schema_parts.append("  💡 Links to employees via salesRepEmployeeNumber")
+                    elif table_name == "employees":
+                        schema_parts.append("  💡 Performance via customer relationships")
                         
                 except Exception as e:
                     logger.warning(f"Could not get schema for table {table_name}: {e}")
