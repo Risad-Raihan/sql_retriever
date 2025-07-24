@@ -1,0 +1,55 @@
+# Dockerfile for CPU Pod - Embedding Service
+FROM python:3.11-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Google Cloud SDK for GCP bucket access
+RUN curl https://sdk.cloud.google.com | bash
+ENV PATH=/root/google-cloud-sdk/bin:$PATH
+
+# Install only basic packages (ML packages installed at runtime)
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install \
+    fastapi==0.104.1 \
+    uvicorn[standard]==0.24.0 \
+    pydantic==2.5.0 \
+    requests==2.31.0
+
+# Create app directory
+WORKDIR /app
+
+# Copy application files
+COPY embedding_service.py /app/
+COPY config.py /app/
+COPY startup_embedding.sh /app/
+COPY gcp-key.json /app/gcp-key.json
+
+# Set execute permissions
+RUN chmod +x /app/startup_embedding.sh
+
+# Set environment variables
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json
+ENV GCP_BUCKET_NAME=sql-retriever-models
+ENV RAG_DATA_PATH=/app/rag_data
+ENV PORT=8000
+
+# Create directories
+RUN mkdir -p /app/rag_data /app/models
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start command
+CMD ["/app/startup_embedding.sh"] 

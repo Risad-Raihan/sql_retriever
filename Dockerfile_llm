@@ -1,0 +1,51 @@
+# Dockerfile for GPU Pod - vLLM Server  
+FROM python:3.11-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Google Cloud SDK for GCP bucket access
+RUN curl https://sdk.cloud.google.com | bash
+ENV PATH=/root/google-cloud-sdk/bin:$PATH
+
+# Install basic Python packages (GPU packages installed in startup script)
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install requests==2.31.0
+RUN pip install fastapi==0.104.1
+RUN pip install uvicorn[standard]==0.24.0
+
+# Create app directory
+WORKDIR /app
+
+# Copy application files
+COPY llm/vllm_client.py /app/
+COPY config.py /app/
+COPY startup_llm.sh /app/
+COPY gcp-key.json /app/gcp-key.json
+
+# Set execute permissions
+RUN chmod +x /app/startup_llm.sh
+
+# Set environment variables
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json
+ENV MODEL_NAME=unsloth/Llama-3.2-3B-Instruct
+ENV GCP_BUCKET_NAME=heroic-overview-466605-p6-sql-retriever
+ENV PORT=8000
+
+# Expose port
+EXPOSE 8000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+# Start command
+CMD ["/app/startup_llm.sh"] 

@@ -23,9 +23,12 @@ class QueryResponse(BaseModel):
     """Response model for /query endpoint."""
     success: bool = Field(..., description="Whether the query was successful")
     sql_query: Optional[str] = Field(None, description="Generated SQL query")
-    results: List[Dict[str, Any]] = Field(default_factory=list, description="Query results")
-    processing_time: float = Field(..., description="Processing time in seconds")
+    results: Dict[str, Any] = Field(default_factory=dict, description="Query results with enhanced formatting")
+    processing_time: Any = Field(..., description="Processing time (can be float or string)")
     error: Optional[str] = Field(None, description="Error message if failed")
+    insights: Optional[List[str]] = Field(default_factory=list, description="Query insights and explanations")
+    performance: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Performance metrics")
+    metadata: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Query metadata")
 
 
 class HealthResponse(BaseModel):
@@ -62,4 +65,4 @@ class ErrorResponse(BaseModel):
     """Generic error response model."""
     error: str = Field(..., description="Error message")
     detail: Optional[str] = Field(None, description="Additional error details")
-    timestamp: datetime = Field(default_factory=datetime.now, description="Error timestamp") 
+    timestamp: str = Field(default_factory=lambda: datetime.now().isoformat(), description="Error timestamp") 

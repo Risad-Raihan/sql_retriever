@@ -1156,3 +1156,573 @@ Please verify the following requirements:
 2025-07-21 16:49:57 | INFO | app | ✅ CRM SQL Retriever initialized successfully
 2025-07-21 16:49:57 | INFO | app | ✅ Database connection verified: 1 rows
 2025-07-21 16:49:57 | INFO | app | 🎉 SQL Retriever API ready!
+2025-07-23 12:37:10 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:37:10 | ERROR | app | ❌ Failed to initialize database: Failed to connect to sqlite database: SQLite database file not found: postgresql://sql_retriever_user:SecurePass123@34.9.191.121:5432/crm_database
+2025-07-23 12:37:10 | ERROR | app | ❌ Failed to initialize application: Failed to connect to sqlite database: SQLite database file not found: postgresql://sql_retriever_user:SecurePass123@34.9.191.121:5432/crm_database
+2025-07-23 12:38:10 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:38:15 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:38:15 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:38:20 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:38:23 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:38:24 | INFO | app | ✅ LLM service connected
+2025-07-23 12:38:24 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:39:03 | ERROR | app | Unhandled exception: Object of type datetime is not JSON serializable
+2025-07-23 12:39:30 | ERROR | app | Unhandled exception: Object of type datetime is not JSON serializable
+2025-07-23 12:40:19 | ERROR | app | Health check error: 'DatabaseConnection' object has no attribute 'db_path'
+2025-07-23 12:41:14 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:41:14 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:41:25 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:41:31 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:41:31 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:41:37 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:41:39 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:41:40 | INFO | app | ✅ LLM service connected
+2025-07-23 12:41:40 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:42:19 | ERROR | app | Unhandled exception: Object of type datetime is not JSON serializable
+2025-07-23 12:43:52 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:43:52 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:45:03 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:45:08 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:45:08 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:45:13 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:45:15 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:45:17 | INFO | app | ✅ LLM service connected
+2025-07-23 12:45:17 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:46:15 | INFO | app | Found 0 similar examples
+2025-07-23 12:46:16 | ERROR | app | LLM service call failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 12:46:16 | ERROR | app | LLM service failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 12:46:16 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 12:47:18 | INFO | app | Found 0 similar examples
+2025-07-23 12:47:19 | ERROR | app | LLM service call failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 12:47:19 | ERROR | app | LLM service failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 12:47:19 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 12:47:37 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:47:37 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:47:45 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:47:51 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:47:51 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:47:56 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:47:59 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:48:00 | INFO | app | ✅ LLM service connected
+2025-07-23 12:48:00 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:48:09 | INFO | app | Found 0 similar examples
+2025-07-23 12:48:12 | INFO | app | Generated SQL: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityOrdered * orderdetails.priceEach) AS revenue FROM customers JOIN orders ON customers.salesRepEmployeeNumber = orders.salesRepEmployeeNumber GROUP BY customers.salesRepEmployeeNumber ORDER BY revenue DESC LIMIT 5;
+2025-07-23 12:48:13 | ERROR | app | SQL execution failed: (psycopg2.errors.SyntaxError) syntax error at or near "customers"
+LINE 1: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityO...
+        ^
+
+[SQL: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityOrdered * orderdetails.priceEach) AS revenue FROM customers JOIN orders ON customers.salesRepEmployeeNumber = orders.salesRepEmployeeNumber GROUP BY customers.salesRepEmployeeNumber ORDER BY revenue DESC LIMIT 5;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 12:49:29 | INFO | app | Found 0 similar examples
+2025-07-23 12:49:31 | INFO | app | Generated SQL: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityOrdered * orderdetails.priceEach) AS revenue FROM customers JOIN orders ON customers.salesRepEmployeeNumber = orders.salesRepEmployeeNumber GROUP BY customers.salesRepEmployeeNumber ORDER BY revenue DESC LIMIT 5;
+2025-07-23 12:49:32 | ERROR | app | SQL execution failed: (psycopg2.errors.SyntaxError) syntax error at or near "customers"
+LINE 1: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityO...
+        ^
+
+[SQL: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityOrdered * orderdetails.priceEach) AS revenue FROM customers JOIN orders ON customers.salesRepEmployeeNumber = orders.salesRepEmployeeNumber GROUP BY customers.salesRepEmployeeNumber ORDER BY revenue DESC LIMIT 5;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 12:49:58 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:49:58 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:50:07 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:50:12 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:50:12 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:50:17 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:50:20 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:50:21 | INFO | app | ✅ LLM service connected
+2025-07-23 12:50:21 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:50:51 | INFO | app | Found 0 similar examples
+2025-07-23 12:50:53 | INFO | app | Generated SQL: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityOrdered * orderdetails.priceEach) AS revenue 
+FROM customers 
+JOIN orders ON customers.salesRepEmployeeNumber = orders.salesRepEmployeeNumber 
+GROUP BY customers.salesRepEmployeeNumber 
+ORDER BY revenue DESC 
+LIMIT 5;
+2025-07-23 12:50:54 | ERROR | app | SQL execution failed: (psycopg2.errors.SyntaxError) syntax error at or near "customers"
+LINE 1: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityO...
+        ^
+
+[SQL: customers.salesRepEmployeeNumber, SUM(orderdetails.quantityOrdered * orderdetails.priceEach) AS revenue 
+FROM customers 
+JOIN orders ON customers.salesRepEmployeeNumber = orders.salesRepEmployeeNumber 
+GROUP BY customers.salesRepEmployeeNumber 
+ORDER BY revenue DESC 
+LIMIT 5;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 12:51:21 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:51:21 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:52:32 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:52:38 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:52:38 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:52:43 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:52:45 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:52:47 | INFO | app | ✅ LLM service connected
+2025-07-23 12:52:47 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:53:00 | INFO | app | Found 0 similar examples
+2025-07-23 12:53:01 | INFO | app | Generated SQL: customers.* FROM customers;
+2025-07-23 12:53:03 | ERROR | app | SQL execution failed: (psycopg2.errors.SyntaxError) syntax error at or near "customers"
+LINE 1: customers.* FROM customers;
+        ^
+
+[SQL: customers.* FROM customers;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 12:54:12 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:54:12 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:54:20 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:54:26 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:54:26 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:54:31 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:54:33 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:54:35 | INFO | app | ✅ LLM service connected
+2025-07-23 12:54:35 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:54:48 | INFO | app | Found 0 similar examples
+2025-07-23 12:54:50 | INFO | app | Generated SQL: customers.salesRepEmployeeNumber, customers.customerName, customers.customerEmail 
+FROM customers;
+2025-07-23 12:54:51 | ERROR | app | SQL execution failed: (psycopg2.errors.SyntaxError) syntax error at or near "customers"
+LINE 1: customers.salesRepEmployeeNumber, customers.customerName, cu...
+        ^
+
+[SQL: customers.salesRepEmployeeNumber, customers.customerName, customers.customerEmail 
+FROM customers;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 12:56:42 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 12:56:42 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 12:56:50 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 12:56:55 | INFO | app | ✅ Database connection initialized
+2025-07-23 12:56:55 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 12:57:01 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 12:57:03 | INFO | app | ✅ Embedding service connected
+2025-07-23 12:57:04 | INFO | app | ✅ LLM service connected
+2025-07-23 12:57:04 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 12:57:15 | INFO | app | Found 0 similar examples
+2025-07-23 12:57:16 | INFO | app | Generated SQL: SELECT customers.* FROM customers;
+2025-07-23 13:00:55 | ERROR | app | Unhandled exception: Object of type datetime is not JSON serializable
+2025-07-23 13:02:38 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 13:02:38 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 13:03:30 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 13:03:35 | INFO | app | ✅ Database connection initialized
+2025-07-23 13:03:35 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 13:03:41 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 13:03:43 | INFO | app | ✅ Embedding service connected
+2025-07-23 13:03:45 | INFO | app | ✅ LLM service connected
+2025-07-23 13:03:45 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 13:05:00 | INFO | app | Found 0 similar examples
+2025-07-23 13:05:01 | INFO | app | Generated SQL: SELECT customers.name, customers.creditLimit FROM customers ORDER BY creditLimit DESC LIMIT 5;
+2025-07-23 13:05:02 | ERROR | app | SQL execution failed: (psycopg2.errors.UndefinedColumn) column customers.name does not exist
+LINE 1: SELECT customers.name, customers.creditLimit FROM customers ...
+               ^
+
+[SQL: SELECT customers.name, customers.creditLimit FROM customers ORDER BY creditLimit DESC LIMIT 5;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:07:52 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 13:07:52 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 13:08:00 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 13:08:06 | INFO | app | ✅ Database connection initialized
+2025-07-23 13:08:06 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 13:08:11 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 13:08:13 | INFO | app | ✅ Embedding service connected
+2025-07-23 13:08:15 | INFO | app | ✅ LLM service connected
+2025-07-23 13:08:15 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 13:08:45 | INFO | app | Found 0 similar examples
+2025-07-23 13:08:46 | INFO | app | Generated SQL: SELECT customers.name, customers.creditLimit FROM customers ORDER BY creditLimit DESC LIMIT 5;
+2025-07-23 13:08:48 | ERROR | app | SQL execution failed: (psycopg2.errors.UndefinedColumn) column customers.name does not exist
+LINE 1: SELECT customers.name, customers.creditLimit FROM customers ...
+               ^
+
+[SQL: SELECT customers.name, customers.creditLimit FROM customers ORDER BY creditLimit DESC LIMIT 5;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:10:43 | INFO | app | Found 0 similar examples
+2025-07-23 13:10:45 | INFO | app | Generated SQL: SELECT customers.name, customers.creditLimit FROM customers ORDER BY creditLimit DESC LIMIT 5;
+2025-07-23 13:10:46 | ERROR | app | SQL execution failed: (psycopg2.errors.UndefinedColumn) column customers.name does not exist
+LINE 1: SELECT customers.name, customers.creditLimit FROM customers ...
+               ^
+
+[SQL: SELECT customers.name, customers.creditLimit FROM customers ORDER BY creditLimit DESC LIMIT 5;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:11:16 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 13:11:16 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 13:12:28 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 13:12:33 | INFO | app | ✅ Database connection initialized
+2025-07-23 13:12:33 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 13:12:39 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 13:12:41 | INFO | app | ✅ Embedding service connected
+2025-07-23 13:12:42 | INFO | app | ✅ LLM service connected
+2025-07-23 13:12:42 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 13:13:45 | INFO | app | Found 0 similar examples
+2025-07-23 13:13:46 | INFO | app | Generated SQL: SELECT c.customername, c.creditlimit FROM customers c ORDER BY c.creditlimit DESC LIMIT 5;
+2025-07-23 13:15:45 | INFO | app | Found 0 similar examples
+2025-07-23 13:15:47 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername FROM customers AS T1 INNER JOIN employees AS T2 ON T1.salesrepemployeenumber = T2.employeenumber WHERE T2.country = 'France';
+2025-07-23 13:15:48 | ERROR | app | SQL execution failed: (psycopg2.errors.UndefinedColumn) column t2.country does not exist
+LINE 1: ....salesrepemployeenumber = T2.employeenumber WHERE T2.country...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "t1.country".
+
+[SQL: SELECT DISTINCT T1.customername FROM customers AS T1 INNER JOIN employees AS T2 ON T1.salesrepemployeenumber = T2.employeenumber WHERE T2.country = 'France';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:20:55 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 13:20:55 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 13:21:03 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 13:21:08 | INFO | app | ✅ Database connection initialized
+2025-07-23 13:21:23 | INFO | app | ✅ SQL validator initialized
+2025-07-23 13:21:23 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 13:21:25 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 13:21:27 | INFO | app | ✅ Embedding service connected
+2025-07-23 13:21:28 | INFO | app | ✅ LLM service connected
+2025-07-23 13:21:28 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 13:22:38 | INFO | app | Found 0 similar examples
+2025-07-23 13:22:40 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername FROM customers AS T1 INNER JOIN offices AS T2 ON T1.country = T2.country WHERE T2.country = 'France';
+2025-07-23 13:22:41 | INFO | app | SQL auto-corrected from: SELECT DISTINCT T1.customername FROM customers AS T1 INNER JOIN offices AS T2 ON T1.country = T2.country WHERE T2.country = 'France';
+2025-07-23 13:22:41 | INFO | app | SQL auto-corrected to: SELECT DISTINCT T1.customerName FROM customers AS T1 INNER JOIN offices AS T2 ON T1.country = T2.country WHERE T2.country = 'France';
+2025-07-23 13:23:56 | INFO | app | Found 0 similar examples
+2025-07-23 13:23:58 | INFO | app | Generated SQL: SELECT DISTINCT e.lastname, e.firstname 
+FROM employees e 
+JOIN offices o ON e.officecode = o.officecode 
+WHERE o.country = 'France';
+2025-07-23 13:23:59 | INFO | app | SQL auto-corrected from: SELECT DISTINCT e.lastname, e.firstname 
+FROM employees e 
+JOIN offices o ON e.officecode = o.officecode 
+WHERE o.country = 'France';
+2025-07-23 13:23:59 | INFO | app | SQL auto-corrected to: SELECT DISTINCT e.lastname, e.firstname FROM employees e JOIN offices o ON e.officeCode = o.officeCode WHERE o.country = 'France';
+2025-07-23 13:25:00 | INFO | app | Found 0 similar examples
+2025-07-23 13:25:02 | INFO | app | Generated SQL: SELECT o.orderdate, c.customername, c.contactlastname, c.contactfirstname 
+FROM orders o 
+JOIN customers c ON o.customernumber = c.customernumber 
+WHERE o.orderdate >= STRFTIME('%Y', '2022-01-01');
+2025-07-23 13:25:03 | INFO | app | SQL auto-corrected from: SELECT o.orderdate, c.customername, c.contactlastname, c.contactfirstname 
+FROM orders o 
+JOIN customers c ON o.customernumber = c.customernumber 
+WHERE o.orderdate >= STRFTIME('%Y', '2022-01-01');
+2025-07-23 13:25:03 | INFO | app | SQL auto-corrected to: SELECT o.orderDate, c.customerName, c.contactlastname, c.contactfirstname FROM orders o JOIN customers c ON o.customerNumber = c.customerNumber WHERE o.orderDate >= DATE_TRUNC('%Y', '2022-01-01');
+2025-07-23 13:25:04 | ERROR | app | SQL execution failed: (psycopg2.errors.AmbiguousFunction) function date_trunc(unknown, unknown) is not unique
+LINE 1: ...merNumber = c.customerNumber WHERE o.orderDate >= DATE_TRUNC...
+                                                             ^
+HINT:  Could not choose a best candidate function. You might need to add explicit type casts.
+
+[SQL: SELECT o.orderDate, c.customerName, c.contactlastname, c.contactfirstname FROM orders o JOIN customers c ON o.customerNumber = c.customerNumber WHERE o.orderDate >= DATE_TRUNC('%%Y', '2022-01-01');]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:27:50 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 13:27:50 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 13:29:45 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 13:29:51 | INFO | app | ✅ Database connection initialized
+2025-07-23 13:30:05 | INFO | app | ✅ SQL validator initialized
+2025-07-23 13:30:05 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 13:30:06 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 13:30:09 | INFO | app | ✅ Embedding service connected
+2025-07-23 13:30:10 | INFO | app | ✅ LLM service connected
+2025-07-23 13:30:10 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 13:31:13 | INFO | app | Found 0 similar examples
+2025-07-23 13:31:15 | INFO | app | Generated SQL: SELECT o.orderdate, c.customername, c.contactlastname, c.contactfirstname 
+FROM orders o 
+JOIN customers c ON o.customernumber = c.customernumber 
+WHERE o.orderdate >= STRFTIME('%Y', '2022-01-01');
+2025-07-23 13:31:16 | INFO | app | SQL auto-corrected from: SELECT o.orderdate, c.customername, c.contactlastname, c.contactfirstname 
+FROM orders o 
+JOIN customers c ON o.customernumber = c.customernumber 
+WHERE o.orderdate >= STRFTIME('%Y', '2022-01-01');
+2025-07-23 13:31:16 | INFO | app | SQL auto-corrected to: SELECT o.orderDate, c.customerName, c.contactLastName, c.contactFirstName FROM orders o JOIN customers c ON o.customerNumber = c.customerNumber WHERE o.orderDate >= '2022-01-01';
+2025-07-23 13:34:07 | INFO | app | Found 0 similar examples
+2025-07-23 13:34:09 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'USA';
+2025-07-23 13:34:10 | INFO | app | SQL auto-corrected from: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'USA';
+2025-07-23 13:34:10 | INFO | app | SQL auto-corrected to: SELECT DISTINCT T1.customerName, T1.contactLastName, T1.contactFirstName, T1.country FROM customers AS T1 JOIN offices AS T2 ON T1.country = T2.country WHERE T2.territory = 'USA';
+2025-07-23 13:34:56 | INFO | app | Found 0 similar examples
+2025-07-23 13:34:58 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername FROM customers AS T1 INNER JOIN offices AS T2 ON T1.country = T2.country WHERE T2.country = 'France';
+2025-07-23 13:34:59 | INFO | app | SQL auto-corrected from: SELECT DISTINCT T1.customername FROM customers AS T1 INNER JOIN offices AS T2 ON T1.country = T2.country WHERE T2.country = 'France';
+2025-07-23 13:34:59 | INFO | app | SQL auto-corrected to: SELECT DISTINCT T1.customerName FROM customers AS T1 INNER JOIN offices AS T2 ON T1.country = T2.country WHERE T2.country = 'France';
+2025-07-23 13:36:38 | INFO | app | Found 0 similar examples
+2025-07-23 13:36:40 | INFO | app | Generated SQL: SELECT c.customername, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customernumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerNumber ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:36:41 | INFO | app | SQL auto-corrected from: SELECT c.customername, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customernumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerNumber ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:36:41 | INFO | app | SQL auto-corrected to: SELECT c.customerName, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerNumber ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:37:25 | INFO | app | Found 0 similar examples
+2025-07-23 13:37:27 | INFO | app | Generated SQL: SELECT T1.customername, T2.orderdate 
+FROM customers AS T1 
+JOIN orders AS T2 ON T1.customernumber = T2.customernumber 
+WHERE STRFTIME('%Y', T2.orderdate) BETWEEN '2003' AND '2005';
+2025-07-23 13:37:28 | INFO | app | SQL auto-corrected from: SELECT T1.customername, T2.orderdate 
+FROM customers AS T1 
+JOIN orders AS T2 ON T1.customernumber = T2.customernumber 
+WHERE STRFTIME('%Y', T2.orderdate) BETWEEN '2003' AND '2005';
+2025-07-23 13:37:28 | INFO | app | SQL auto-corrected to: SELECT T1.customerName, T2.orderDate FROM customers AS T1 JOIN orders AS T2 ON T1.customerNumber = T2.customerNumber WHERE STRFTIME('%Y', T2.orderDate) BETWEEN '2003' AND '2005';
+2025-07-23 13:37:29 | ERROR | app | SQL execution failed: (psycopg2.errors.UndefinedFunction) function strftime(unknown, date) does not exist
+LINE 1: ...T2 ON T1.customerNumber = T2.customerNumber WHERE STRFTIME('...
+                                                             ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+
+[SQL: SELECT T1.customerName, T2.orderDate FROM customers AS T1 JOIN orders AS T2 ON T1.customerNumber = T2.customerNumber WHERE STRFTIME('%%Y', T2.orderDate) BETWEEN '2003' AND '2005';]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:38:05 | INFO | app | Found 0 similar examples
+2025-07-23 13:38:07 | INFO | app | Generated SQL: SELECT T1.productline, COUNT(DISTINCT T2.customerNumber) AS customer_count, SUM(T2.quantityOrdered * T2.priceEach) AS total_revenue FROM ORDERDETAILS T1 INNER JOIN PRODUCTS T2 ON T1.productcode = T2.productcode GROUP BY T1.productline;
+2025-07-23 13:38:08 | INFO | app | SQL auto-corrected from: SELECT T1.productline, COUNT(DISTINCT T2.customerNumber) AS customer_count, SUM(T2.quantityOrdered * T2.priceEach) AS total_revenue FROM ORDERDETAILS T1 INNER JOIN PRODUCTS T2 ON T1.productcode = T2.productcode GROUP BY T1.productline;
+2025-07-23 13:38:08 | INFO | app | SQL auto-corrected to: SELECT T1.productline, COUNT(DISTINCT T2.customerNumber) AS customer_count, SUM(T2.quantityOrdered * T2.priceEach) AS total_revenue FROM ORDERDETAILS T1 INNER JOIN PRODUCTS T2 ON T1.productCode = T2.productCode GROUP BY T1.productline;
+2025-07-23 13:38:09 | ERROR | app | SQL execution failed: (psycopg2.errors.UndefinedColumn) column t1.productline does not exist
+LINE 1: SELECT T1.productline, COUNT(DISTINCT T2.customerNumber) AS ...
+               ^
+HINT:  Perhaps you meant to reference the column "t2.productline".
+
+[SQL: SELECT T1.productline, COUNT(DISTINCT T2.customerNumber) AS customer_count, SUM(T2.quantityOrdered * T2.priceEach) AS total_revenue FROM ORDERDETAILS T1 INNER JOIN PRODUCTS T2 ON T1.productCode = T2.productCode GROUP BY T1.productline;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-07-23 13:38:42 | INFO | app | Found 0 similar examples
+2025-07-23 13:38:44 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'FRANCE';
+2025-07-23 13:38:45 | INFO | app | SQL auto-corrected from: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'FRANCE';
+2025-07-23 13:38:45 | INFO | app | SQL auto-corrected to: SELECT DISTINCT T1.customerName, T1.contactLastName, T1.contactFirstName, T1.country FROM customers AS T1 JOIN offices AS T2 ON T1.country = T2.country WHERE T2.territory = 'FRANCE';
+2025-07-23 13:39:44 | INFO | app | Found 0 similar examples
+2025-07-23 13:39:47 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.phone, T1.addressline1, T1.addressline2, T1.city, T1.state, T1.postalcode, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'FRANCE';
+2025-07-23 13:39:48 | INFO | app | SQL auto-corrected from: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.phone, T1.addressline1, T1.addressline2, T1.city, T1.state, T1.postalcode, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'FRANCE';
+2025-07-23 13:39:48 | INFO | app | SQL auto-corrected to: SELECT DISTINCT T1.customerName, T1.contactLastName, T1.contactFirstName, T1.phone, T1.addressline1, T1.addressline2, T1.city, T1.state, T1.postalcode, T1.country FROM customers AS T1 JOIN offices AS T2 ON T1.country = T2.country WHERE T2.territory = 'FRANCE';
+2025-07-23 13:40:21 | INFO | app | Found 0 similar examples
+2025-07-23 13:40:23 | INFO | app | Generated SQL: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'France';
+2025-07-23 13:40:24 | INFO | app | SQL auto-corrected from: SELECT DISTINCT T1.customername, T1.contactlastname, T1.contactfirstname, T1.country 
+FROM customers AS T1 
+JOIN offices AS T2 ON T1.country = T2.country 
+WHERE T2.territory = 'France';
+2025-07-23 13:40:24 | INFO | app | SQL auto-corrected to: SELECT DISTINCT T1.customerName, T1.contactLastName, T1.contactFirstName, T1.country FROM customers AS T1 JOIN offices AS T2 ON T1.country = T2.country WHERE T2.territory = 'France';
+2025-07-23 13:40:55 | INFO | app | Found 0 similar examples
+2025-07-23 13:40:56 | INFO | app | Generated SQL: SELECT DISTINCT e.lastname, e.firstname 
+FROM employees e 
+JOIN offices o ON e.officecode = o.officecode 
+WHERE o.country = 'France';
+2025-07-23 13:40:58 | INFO | app | SQL auto-corrected from: SELECT DISTINCT e.lastname, e.firstname 
+FROM employees e 
+JOIN offices o ON e.officecode = o.officecode 
+WHERE o.country = 'France';
+2025-07-23 13:40:58 | INFO | app | SQL auto-corrected to: SELECT DISTINCT e.lastName, e.firstName FROM employees e JOIN offices o ON e.officeCode = o.officeCode WHERE o.country = 'France';
+2025-07-23 13:41:40 | INFO | app | Found 0 similar examples
+2025-07-23 13:41:42 | INFO | app | Generated SQL: SELECT c.customername, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customernumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customername ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:41:43 | INFO | app | SQL auto-corrected from: SELECT c.customername, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customernumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customername ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:41:43 | INFO | app | SQL auto-corrected to: SELECT c.customerName, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerName ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:44:24 | INFO | app | Found 0 similar examples
+2025-07-23 13:44:26 | INFO | app | Generated SQL: SELECT DISTINCT e.lastname, e.firstname 
+FROM employees e 
+JOIN offices o ON e.officecode = o.officecode 
+WHERE o.country = 'France';
+2025-07-23 13:44:27 | INFO | app | SQL auto-corrected from: SELECT DISTINCT e.lastname, e.firstname 
+FROM employees e 
+JOIN offices o ON e.officecode = o.officecode 
+WHERE o.country = 'France';
+2025-07-23 13:44:27 | INFO | app | SQL auto-corrected to: SELECT DISTINCT e.lastName, e.firstName FROM employees e JOIN offices o ON e.officeCode = o.officeCode WHERE o.country = 'France';
+2025-07-23 13:45:23 | INFO | app | Found 0 similar examples
+2025-07-23 13:45:25 | INFO | app | Generated SQL: SELECT c.customername, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customernumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customername ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:45:27 | INFO | app | SQL auto-corrected from: SELECT c.customername, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customernumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customername ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:45:27 | INFO | app | SQL auto-corrected to: SELECT c.customerName, SUM(od.quantityOrdered * od.priceEach) AS total_spent FROM customers c JOIN orders o ON c.customerNumber = o.customerNumber JOIN orderdetails od ON o.orderNumber = od.orderNumber GROUP BY c.customerName ORDER BY total_spent DESC LIMIT 1;
+2025-07-23 13:51:26 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 13:51:26 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 14:44:35 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:44:35 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:44:35 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:44:35 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:44:35 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:44:35 | WARNING | app | ⚠️  Embedding service connection failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3285c7ecf0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-23 14:44:35 | WARNING | app | ⚠️  LLM service connection failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3285ce1880>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-23 14:44:35 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:47:07 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 14:47:07 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 14:49:45 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:49:45 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:49:45 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:49:45 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:49:45 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:49:45 | WARNING | app | ⚠️  Embedding service connection failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f828e467b00>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-23 14:49:45 | WARNING | app | ⚠️  LLM service connection failed: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /v1/models (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f828e4edca0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-07-23 14:49:45 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:51:03 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 14:51:03 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 14:51:39 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:51:39 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:51:39 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:51:39 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:51:39 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:51:42 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:51:52 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f06a0ce1dc0>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:51:52 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:52:59 | INFO | app | Found 0 similar examples
+2025-07-23 14:53:59 | ERROR | app | LLM service failed: LLM service timeout
+2025-07-23 14:53:59 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service timeout
+2025-07-23 14:53:59 | ERROR | app | Query processing error: 1 validation error for QueryResponse
+results
+  Input should be a valid dictionary [type=dict_type, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/dict_type
+2025-07-23 14:54:50 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 14:54:50 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 14:54:51 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:54:51 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:54:51 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:54:51 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:54:51 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:54:53 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:55:03 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f36b31fd760>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:55:03 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:55:18 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:55:18 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:55:18 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:55:18 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:55:18 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:55:21 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:55:31 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f153c5eddc0>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:55:31 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:55:46 | INFO | app | Found 0 similar examples
+2025-07-23 14:56:46 | ERROR | app | LLM service failed: LLM service timeout
+2025-07-23 14:56:46 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service timeout
+2025-07-23 14:56:46 | ERROR | app | Query processing error: 1 validation error for QueryResponse
+results
+  Input should be a valid dictionary [type=dict_type, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/dict_type
+2025-07-23 14:57:31 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 14:57:31 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 14:57:31 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:57:31 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:57:31 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:57:31 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:57:31 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:57:34 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:57:44 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f7141af9790>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:57:44 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:57:44 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:57:44 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:57:44 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:57:44 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:57:44 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:57:46 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:57:57 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7ff7135f57c0>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:57:57 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:57:57 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:57:57 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:57:57 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:57:57 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:57:57 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:58:00 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:58:10 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f79a19e99a0>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:58:10 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:58:10 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 14:58:10 | INFO | app | ✅ Database connection initialized
+2025-07-23 14:58:10 | INFO | app | ✅ SQL validator initialized
+2025-07-23 14:58:10 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 14:58:10 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 14:58:12 | INFO | app | ✅ Embedding service connected
+2025-07-23 14:58:22 | WARNING | app | ⚠️  LLM service connection failed: HTTPSConnectionPool(host='fake-url.com', port=443): Max retries exceeded with url: /v1/models (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f01fdde9850>, 'Connection to fake-url.com timed out. (connect timeout=10)'))
+2025-07-23 14:58:22 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 14:58:30 | INFO | app | Found 0 similar examples
+2025-07-23 14:59:30 | ERROR | app | LLM service failed: LLM service timeout
+2025-07-23 14:59:30 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service timeout
+2025-07-23 15:00:16 | INFO | app | Found 0 similar examples
+2025-07-23 15:01:16 | ERROR | app | LLM service failed: LLM service timeout
+2025-07-23 15:01:16 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service timeout
+2025-07-23 15:01:48 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 15:01:48 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 15:26:01 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:26:01 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:26:01 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:26:01 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:26:01 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:26:04 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:26:05 | INFO | app | ✅ LLM service connected
+2025-07-23 15:26:05 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:27:08 | INFO | app | Found 0 similar examples
+2025-07-23 15:27:10 | ERROR | app | LLM service call failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3.2-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 15:27:10 | ERROR | app | LLM service failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3.2-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 15:27:10 | ERROR | app | Query processing failed: Both LLM service and example retrieval failed: LLM service error: 404 - {"object":"error","message":"The model `llama-3.2-3b-instruct` does not exist.","type":"NotFoundError","param":null,"code":404}
+2025-07-23 15:27:56 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 15:27:56 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 15:27:57 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:27:57 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:27:57 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:27:57 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:27:57 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:27:59 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:28:00 | INFO | app | ✅ LLM service connected
+2025-07-23 15:28:00 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:28:08 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 15:28:08 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 15:28:09 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:28:09 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:28:09 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:28:09 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:28:09 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:28:11 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:28:13 | INFO | app | ✅ LLM service connected
+2025-07-23 15:28:13 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:28:14 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:28:14 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:28:14 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:28:14 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:28:14 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:28:16 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:28:17 | INFO | app | ✅ LLM service connected
+2025-07-23 15:28:17 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:28:38 | INFO | app | Found 0 similar examples
+2025-07-23 15:28:39 | INFO | app | Generated SQL: SELECT * FROM customers;
+2025-07-23 15:28:39 | ERROR | app | Error creating enhanced response: 'list' object has no attribute 'get'
+2025-07-23 15:28:39 | ERROR | app | Query processing error: 1 validation error for QueryResponse
+results
+  Input should be a valid dictionary [type=dict_type, input_value=[{'customerNumber': 103, ...creditLimit': 123900.0}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/dict_type
+2025-07-23 15:29:34 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 15:29:34 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 15:29:35 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:29:35 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:29:35 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:29:35 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:29:35 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:29:37 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:29:38 | INFO | app | ✅ LLM service connected
+2025-07-23 15:29:38 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:29:39 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:29:39 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:29:39 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:29:39 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:29:39 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:29:41 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:29:42 | INFO | app | ✅ LLM service connected
+2025-07-23 15:29:42 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:29:52 | INFO | app | Found 0 similar examples
+2025-07-23 15:29:53 | INFO | app | Generated SQL: SELECT * FROM customers;
+2025-07-23 15:31:25 | INFO | app | Found 0 similar examples
+2025-07-23 15:31:26 | INFO | app | Generated SQL: SELECT DISTINCT e.employeeNumber, e.firstName, e.lastName 
+FROM employees e 
+JOIN offices o ON e.officeCode = o.officeCode 
+WHERE o.country = 'France';
+2025-07-23 15:31:26 | INFO | app | SQL auto-corrected from: SELECT DISTINCT e.employeeNumber, e.firstName, e.lastName 
+FROM employees e 
+JOIN offices o ON e.officeCode = o.officeCode 
+WHERE o.country = 'France';
+2025-07-23 15:31:26 | INFO | app | SQL auto-corrected to: SELECT DISTINCT e.employeeNumber, e.firstName, e.lastName FROM employees e JOIN offices o ON e.officeCode = o.officeCode WHERE o.country = 'France';
+2025-07-23 15:32:13 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 15:32:13 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 15:37:18 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:37:18 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:37:18 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:37:18 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:37:18 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:37:20 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:37:22 | INFO | app | ✅ LLM service connected
+2025-07-23 15:37:22 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 15:40:32 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 15:40:32 | INFO | app | 👋 SQL Retriever API shut down complete
+2025-07-23 15:40:39 | INFO | app | 🚀 Starting SQL Retriever API with Runpod services...
+2025-07-23 15:40:39 | INFO | app | ✅ Database connection initialized
+2025-07-23 15:40:39 | INFO | app | ✅ SQL validator initialized
+2025-07-23 15:40:39 | INFO | app | ✅ Runpod SQL Retriever initialized successfully
+2025-07-23 15:40:39 | INFO | app | ✅ Database connection verified: 1 rows
+2025-07-23 15:40:41 | INFO | app | ✅ Embedding service connected
+2025-07-23 15:40:43 | INFO | app | ✅ LLM service connected
+2025-07-23 15:40:43 | INFO | app | 🎉 SQL Retriever API ready with Runpod services!
+2025-07-23 17:04:02 | INFO | app | 🧹 Shutting down SQL Retriever API...
+2025-07-23 17:04:02 | INFO | app | 👋 SQL Retriever API shut down complete

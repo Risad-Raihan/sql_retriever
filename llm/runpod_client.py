@@ -16,7 +16,7 @@ class RunpodLLMClient:
     def __init__(self):
         self.endpoint = os.getenv('LLM_ENDPOINT')
         self.api_key = os.getenv('RUNPOD_LLM_KEY', 'not-needed')
-        self.model_name = os.getenv('MODEL_NAME', 'llama-3.2-3b-instruct')
+        self.model_name = os.getenv('MODEL_NAME', 'meta-llama/Llama-3.2-3B-Instruct')
         
     def generate_sql(self, prompt: str, max_tokens: int = 200, temperature: float = 0.1) -> str:
         """Generate SQL query from natural language prompt."""

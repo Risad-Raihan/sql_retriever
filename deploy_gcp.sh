@@ -405,8 +405,16 @@ if [ "$USE_SECRET_MANAGER" = "true" ]; then
     DATABASE_URL="postgresql://$SQL_USER:\$SQL_PASSWORD_SECRET@//cloudsql/$CONNECTION_STRING/$SQL_DATABASE"
     ENV_VARS="DATABASE_URL=$DATABASE_URL,DATABASE_TYPE=postgresql,RAG_VECTOR_STORE_PATH=gs://$BUCKET_NAME/rag,MODEL_NAME=$(get_config 'model_name'),LOG_LEVEL=$(get_config 'log_level'),ENVIRONMENT=$(get_config 'environment'),RAG_ENABLED=true,ENABLE_SAFETY_CHECKS=true,SQL_PUBLIC_IP=$SQL_PUBLIC_IP"
     
-    if [ -n "$MODEL_ENDPOINT" ] && [ "$MODEL_ENDPOINT" != "your_runpod_endpoint_here" ]; then
-        ENV_VARS="$ENV_VARS,MODEL_ENDPOINT=$MODEL_ENDPOINT"
+    # Add RunPod service URLs if configured
+    EMBEDDING_URL=$(get_config 'embedding_url' 2>/dev/null || echo "")
+    LLM_URL=$(get_config 'llm_url' 2>/dev/null || echo "")
+    
+    if [ -n "$EMBEDDING_URL" ] && [ "$EMBEDDING_URL" != "your_runpod_embedding_endpoint_here" ]; then
+        ENV_VARS="$ENV_VARS,EMBEDDING_URL=$EMBEDDING_URL"
+    fi
+    
+    if [ -n "$LLM_URL" ] && [ "$LLM_URL" != "your_runpod_llm_endpoint_here" ]; then
+        ENV_VARS="$ENV_VARS,LLM_URL=$LLM_URL"
     fi
     
     # Deploy with secrets
@@ -427,8 +435,16 @@ else
 DATABASE_URL="postgresql://$SQL_USER:$SQL_PASSWORD@//cloudsql/$CONNECTION_STRING/$SQL_DATABASE"
     ENV_VARS="DATABASE_URL=$DATABASE_URL,DATABASE_TYPE=postgresql,RAG_VECTOR_STORE_PATH=gs://$BUCKET_NAME/rag,API_KEY=$API_KEY,MODEL_NAME=$(get_config 'model_name'),LOG_LEVEL=$(get_config 'log_level'),ENVIRONMENT=$(get_config 'environment'),RAG_ENABLED=true,ENABLE_SAFETY_CHECKS=true,SQL_PUBLIC_IP=$SQL_PUBLIC_IP"
     
-    if [ -n "$MODEL_ENDPOINT" ] && [ "$MODEL_ENDPOINT" != "your_runpod_endpoint_here" ]; then
-        ENV_VARS="$ENV_VARS,MODEL_ENDPOINT=$MODEL_ENDPOINT"
+    # Add RunPod service URLs if configured
+    EMBEDDING_URL=$(get_config 'embedding_url' 2>/dev/null || echo "")
+    LLM_URL=$(get_config 'llm_url' 2>/dev/null || echo "")
+    
+    if [ -n "$EMBEDDING_URL" ] && [ "$EMBEDDING_URL" != "your_runpod_embedding_endpoint_here" ]; then
+        ENV_VARS="$ENV_VARS,EMBEDDING_URL=$EMBEDDING_URL"
+    fi
+    
+    if [ -n "$LLM_URL" ] && [ "$LLM_URL" != "your_runpod_llm_endpoint_here" ]; then
+        ENV_VARS="$ENV_VARS,LLM_URL=$LLM_URL"
     fi
 
 gcloud run deploy "$SERVICE_NAME" \

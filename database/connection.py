@@ -19,6 +19,11 @@ class DatabaseConnection:
         
         if db_path_or_url:
             self.connection_string = db_path_or_url
+            # Auto-detect database type from URL
+            if db_path_or_url.startswith('postgresql://'):
+                self.db_type = "postgresql"
+            else:
+                self.db_type = DATABASE_TYPE.lower()
         elif DATABASE_URL:
             # Use PostgreSQL connection URL from environment
             if "cloudsql" in DATABASE_URL:
@@ -34,7 +39,12 @@ class DatabaseConnection:
                     self.connection_string = DATABASE_URL
             else:
                 self.connection_string = DATABASE_URL
+            
+            # Auto-detect database type from URL
+            if DATABASE_URL.startswith('postgresql://'):
             self.db_type = "postgresql"
+            else:
+                self.db_type = DATABASE_TYPE.lower()
         else:
             # Use SQLite file path
             self.connection_string = f"sqlite:///{DATABASE_PATH}"
@@ -117,7 +127,17 @@ class DatabaseConnection:
                 if result.returns_rows:
                     columns = result.keys()
                     rows = result.fetchall()
-                    results = [dict(zip(columns, row)) for row in rows]
+                    
+                    # Convert rows to dictionaries with proper serialization
+                    for row in rows:
+                        row_dict = {}
+                        for col, value in zip(columns, row):
+                            # Handle datetime objects by converting to ISO format strings
+                            if hasattr(value, 'isoformat'):  # datetime, date, time objects
+                                row_dict[col] = value.isoformat()
+                            else:
+                                row_dict[col] = value
+                        results.append(row_dict)
             
             logger.info(f"Query executed successfully, returned {len(results)} rows")
             return results
@@ -142,7 +162,18 @@ class DatabaseConnection:
                 # Get sample data
                 with self.engine.connect() as conn:
                     result = conn.execute(text(f"SELECT * FROM {table_name} LIMIT 3"))
-                    sample_rows = [dict(row._mapping) for row in result.fetchall()]
+                    
+                    # Convert sample rows with proper datetime serialization
+                    sample_rows = []
+                    for row in result.fetchall():
+                        row_dict = {}
+                        for col, value in row._mapping.items():
+                            # Handle datetime objects by converting to ISO format strings
+                            if hasattr(value, 'isoformat'):  # datetime, date, time objects
+                                row_dict[col] = value.isoformat()
+                            else:
+                                row_dict[col] = value
+                        sample_rows.append(row_dict)
                 
                 return {
                     'table_name': table_name,
@@ -187,7 +218,7 @@ class DatabaseConnection:
         }
         
         schema_parts = [
-            CRM_BUSINESS_CONTEXT,
+            f"📖 Business Context: {CRM_BUSINESS_CONTEXT['description']}",
             f"\n🗄️ Database Schema ({self.db_type.upper()}):",
             f"\n🔧 CRITICAL {self.db_type.upper()} Syntax Rules:"
         ]
@@ -214,7 +245,10 @@ class DatabaseConnection:
             "- priceEach: In ORDERDETAILS table (not products)", 
             "- salesRepEmployeeNumber: In CUSTOMERS table (not orders)",
             "- quantityOrdered: In ORDERDETAILS table",
-            "- paymentDate: In PAYMENTS table"
+            "- paymentDate: In PAYMENTS table",
+            "- country: In CUSTOMERS table (customer location) or OFFICES table (office location) - NOT in employees table",
+            "- city: In CUSTOMERS table (customer city) or OFFICES table (office city)",
+            "- phone: In CUSTOMERS table (customer phone) or OFFICES table (office phone)"
         ])
         
         # Add database-specific analytical patterns
@@ -241,7 +275,7 @@ class DatabaseConnection:
             
             inspector = inspect(self.engine)
             
-            for table_name, expected_columns in CRM_TABLES.items():
+            for table_name in CRM_TABLES:
                 try:
                     # Get table schema
                     columns_info = inspector.get_columns(table_name)
@@ -297,4 +331,4 @@ class DatabaseConnection:
         self.disconnect()
 
 # Global database instance
-db = DatabaseConnection() 
+# db = DatabaseConnection()  # Commented out to prevent import-time connection 

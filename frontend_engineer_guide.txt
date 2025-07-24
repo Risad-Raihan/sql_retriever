@@ -1,0 +1,429 @@
+================================================================================
+                     SQL RETRIEVER API - FRONTEND DEVELOPMENT GUIDE
+================================================================================
+
+🌐 API INFORMATION
+================================================================================
+
+Base URL: https://sql-retriever-api-344430275868.us-central1.run.app
+API Docs: https://sql-retriever-api-344430275868.us-central1.run.app/docs
+
+Authentication:
+  Header: Authorization: Bearer test-secret-key
+
+Main Endpoint:
+  POST /query
+  
+Sample Request:
+  fetch('https://sql-retriever-api-344430275868.us-central1.run.app/query', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer test-secret-key'
+    },
+    body: JSON.stringify({
+      question: 'Show me all customers'
+    })
+  });
+
+================================================================================
+🎯 SUGGESTED QUESTIONS FOR BOT UI
+================================================================================
+
+📊 EASY QUESTIONS (For New Users):
+────────────────────────────────────
+• "Show me all customers"
+• "How many orders do we have?"
+• "List all products we sell"
+• "Who are our employees?"
+• "Show me recent orders"
+
+🔍 MEDIUM QUESTIONS (Business Insights):
+───────────────────────────────────────
+• "Which customers have the highest credit limits?"
+• "What are our top 5 selling products?"
+• "Show me customers from France"
+• "Which employees work in the Boston office?"
+• "Find orders placed in December 2023"
+
+🚀 ADVANCED QUESTIONS (Analytics):
+──────────────────────────────────
+• "Which employees have the most customers?"
+• "What's the total value of orders by country?"
+• "Show me customers who haven't placed orders recently"
+• "Which products are running low in stock?"
+• "Compare sales performance by sales representative"
+
+💼 BUSINESS-SPECIFIC QUERIES:
+────────────────────────────
+• "Which customers owe us the most money?"
+• "Show me all cancelled or disputed orders"
+• "Find customers with no assigned sales representative"
+• "What's our average order value by customer?"
+• "Which offices have the most employees?"
+
+================================================================================
+📊 ENHANCED API RESPONSE STRUCTURE
+================================================================================
+
+The API returns rich, frontend-friendly responses:
+
+{
+  "success": true,
+  "sql_query": "SELECT * FROM customers;",
+  "results": {
+    "columns": ["customerNumber", "customerName", "phone", ...],
+    "data": [
+      {"customerNumber": 103, "customerName": "Atelier graphique", ...},
+      {"customerNumber": 112, "customerName": "Signal Gift Stores", ...}
+    ],
+    "row_count": 14,
+    "column_descriptions": [
+      {"column": "customerNumber", "description": "ID for Customer"},
+      {"column": "phone", "description": "Phone number"}
+    ]
+  },
+  "insights": [
+    "Found 14 records - consider refining your search"
+  ],
+  "performance": {
+    "query_execution_time": "2.906s",
+    "total_processing_time": "2.906s",
+    "performance_rating": "Good"
+  },
+  "metadata": {
+    "query_id": "query_1753262993",
+    "timestamp": "2025-07-23 15:29:53",
+    "query_complexity": "Simple"
+  }
+}
+
+================================================================================
+🎨 UI COMPONENTS TO BUILD
+================================================================================
+
+1. QUERY INTERFACE
+──────────────────
+• Text input with placeholder: "Ask about your CRM data..."
+• Suggested questions as clickable chips/buttons
+• Send button with loading state
+• Query history sidebar
+
+2. RESPONSE DISPLAY COMPONENTS
+─────────────────────────────
+• SQL Query Display (collapsible)
+• Smart Insights Banner
+• Enhanced Data Table with column descriptions
+• Performance Indicator with color-coded ratings
+• Query Metadata display
+
+3. PERFORMANCE FEATURES
+──────────────────────
+• Smart loading states with progress indicators
+• Export functionality (CSV/JSON)
+• Responsive design for mobile
+• Error handling with retry options
+• Dark/light mode toggle
+
+================================================================================
+💻 TECHNICAL IMPLEMENTATION
+================================================================================
+
+API INTEGRATION EXAMPLE:
+────────────────────────
+
+const queryAPI = async (question) => {
+  try {
+    const response = await fetch('https://sql-retriever-api-344430275868.us-central1.run.app/query', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer test-secret-key'
+      },
+      body: JSON.stringify({ question })
+    });
+    
+    const data = await response.json();
+    
+    if (!data.success) {
+      throw new Error(data.error || 'Query failed');
+    }
+    
+    return data;
+  } catch (error) {
+    console.error('Query failed:', error);
+    throw error;
+  }
+};
+
+STATE MANAGEMENT EXAMPLE:
+────────────────────────
+
+const useQueryState = () => {
+  const [queries, setQueries] = useState([]);
+  const [currentQuery, setCurrentQuery] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
+  const executeQuery = async (question) => {
+    setLoading(true);
+    try {
+      const result = await queryAPI(question);
+      const newQuery = { question, result, timestamp: Date.now() };
+      setQueries(prev => [newQuery, ...prev]);
+      setCurrentQuery(newQuery);
+    } catch (error) {
+      // Handle error appropriately
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  return { queries, currentQuery, loading, executeQuery };
+};
+
+COMPONENT EXAMPLES:
+──────────────────
+
+// Enhanced Data Table Component
+const EnhancedDataTable = ({ data, columns, descriptions }) => {
+  return (
+    <div className="enhanced-table">
+      <div className="table-header">
+        <h3>Results ({data.length} records)</h3>
+        <ExportButton data={data} />
+      </div>
+      
+      <table>
+        <thead>
+          <tr>
+            {columns.map((col, idx) => (
+              <th key={col}>
+                {col}
+                <Tooltip content={descriptions[idx]?.description}>
+                  <InfoIcon />
+                </Tooltip>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, idx) => (
+            <tr key={idx}>
+              {columns.map(col => (
+                <td key={col}>{row[col]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+// Performance Indicator Component
+const PerformanceIndicator = ({ metrics }) => {
+  const getRatingColor = (rating) => {
+    switch(rating?.toLowerCase()) {
+      case 'excellent': return 'green';
+      case 'good': return 'yellow';
+      case 'slow': return 'red';
+      default: return 'gray';
+    }
+  };
+  
+  return (
+    <div className="performance-metrics">
+      <div className="metric">
+        <span>Query Time: {metrics.query_execution_time}</span>
+      </div>
+      <div className="metric">
+        <span className={`rating ${getRatingColor(metrics.performance_rating)}`}>
+          {metrics.performance_rating}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+================================================================================
+🎨 UI/UX DESIGN RECOMMENDATIONS
+================================================================================
+
+LAYOUT STRUCTURE:
+────────────────
+
+┌─────────────────────────────────────┐
+│  🏢 CRM Data Assistant              │
+├─────────────────────────────────────┤
+│  💬 Chat Interface                  │
+│  ┌─────────────────────────────────┐ │
+│  │ Suggested Questions:            │ │
+│  │ [Show customers] [Recent orders] │ │
+│  └─────────────────────────────────┘ │
+│  ┌─────────────────────────────────┐ │
+│  │ Ask about your CRM data...      │ │
+│  │                            [📤] │ │
+│  └─────────────────────────────────┘ │
+├─────────────────────────────────────┤
+│  📊 Results Panel                   │
+│  ┌─────────────────────────────────┐ │
+│  │ ✨ Insights                     │ │
+│  │ 📈 Performance                  │ │
+│  │ 📋 Data Table                   │ │
+│  │ 🔍 SQL Query (collapsible)      │ │
+│  └─────────────────────────────────┘ │
+└─────────────────────────────────────┘
+
+KEY FEATURES TO IMPLEMENT:
+─────────────────────────
+
+1. Suggested Questions
+   • Display sample queries as clickable chips
+   • Organize by difficulty level (Easy/Medium/Advanced)
+   • Update suggestions based on query history
+
+2. Smart Tooltips
+   • Show column descriptions on hover
+   • Explain technical terms in plain language
+   • Provide context for business metrics
+
+3. Export Functionality
+   • CSV download for spreadsheet analysis
+   • JSON export for developers
+   • Copy to clipboard functionality
+
+4. Query History
+   • Save and replay previous queries
+   • Search through query history
+   • Mark favorite queries
+
+5. Performance Visualization
+   • Color-coded performance ratings:
+     - Green: Excellent (< 1s)
+     - Yellow: Good (1-3s)
+     - Red: Slow (> 3s)
+   • Progress bars for query execution
+   • Performance tips and optimization suggestions
+
+6. Responsive Design
+   • Mobile-friendly interface
+   • Touch-friendly controls
+   • Collapsible panels for small screens
+
+7. Error Handling
+   • Graceful error messages with clear explanations
+   • Retry functionality for failed queries
+   • Helpful suggestions for fixing queries
+
+8. Loading States
+   • Progressive loading with estimated time
+   • Skeleton screens while data loads
+   • Cancel query functionality
+
+STYLING GUIDELINES:
+──────────────────
+
+• Clean, modern design with plenty of whitespace
+• Card-based layout for better organization
+• Syntax highlighting for SQL queries
+• Professional color scheme (blues, grays, whites)
+• Smooth animations for state transitions
+• Consistent spacing and typography
+• Accessibility-compliant design
+
+COLOR SCHEME SUGGESTIONS:
+────────────────────────
+
+Primary Colors:
+• Blue (#2563eb) - Primary actions, links
+• Gray (#64748b) - Text, borders
+• White (#ffffff) - Backgrounds
+
+Status Colors:
+• Green (#10b981) - Success, excellent performance
+• Yellow (#f59e0b) - Warning, good performance
+• Red (#ef4444) - Error, slow performance
+
+Background Colors:
+• Light Gray (#f8fafc) - Page background
+• White (#ffffff) - Card backgrounds
+• Dark Blue (#1e293b) - Dark mode backgrounds
+
+================================================================================
+🚀 DEVELOPMENT PRIORITIES
+================================================================================
+
+PHASE 1 - CORE FUNCTIONALITY:
+────────────────────────────
+1. Basic query interface with text input
+2. API integration and response handling
+3. Simple data table display
+4. Error handling and loading states
+
+PHASE 2 - ENHANCED FEATURES:
+───────────────────────────
+1. Suggested questions interface
+2. Enhanced data table with descriptions
+3. Performance indicators
+4. Query history functionality
+
+PHASE 3 - ADVANCED FEATURES:
+───────────────────────────
+1. Export functionality
+2. Advanced filtering and sorting
+3. Dark mode support
+4. Mobile responsiveness
+
+PHASE 4 - POLISH & OPTIMIZATION:
+──────────────────────────────
+1. Animations and micro-interactions
+2. Performance optimizations
+3. Accessibility improvements
+4. User testing and refinements
+
+================================================================================
+🔧 TESTING RECOMMENDATIONS
+================================================================================
+
+API TESTING:
+───────────
+
+Test with these sample queries to ensure proper handling:
+
+• Simple: "Show me all customers"
+• Complex: "Which employees have the most customers?"
+• Error cases: "Show me invalid table"
+• Empty results: "Find customers named 'NonExistent'"
+
+BROWSER COMPATIBILITY:
+─────────────────────
+
+• Chrome (latest)
+• Firefox (latest)
+• Safari (latest)
+• Edge (latest)
+• Mobile browsers (iOS Safari, Chrome Mobile)
+
+PERFORMANCE TESTING:
+───────────────────
+
+• Large result sets (>100 rows)
+• Slow network conditions
+• Concurrent queries
+• Memory usage optimization
+
+================================================================================
+📞 SUPPORT & QUESTIONS
+================================================================================
+
+If you have any questions or need clarification on any part of this guide,
+please reach out. The API is fully functional and ready for integration.
+
+Remember: The API returns rich, descriptive data specifically designed to
+make your frontend development easier. Take advantage of the insights,
+performance metrics, and column descriptions to create an exceptional
+user experience.
+
+Good luck with the development! 🚀
+
+================================================================================ 

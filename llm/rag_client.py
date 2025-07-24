@@ -671,6 +671,16 @@ SELECT"""
             # Extract SQL from response
             sql_query = self._extract_sql_from_response(response)
             
+            # Fallback: if extraction failed but response looks like SQL, add SELECT
+            if not sql_query and "FROM" in response:
+                sql_query = "SELECT " + response.strip()
+                if not sql_query.endswith(';'):
+                    sql_query += ';'
+            
+            # Final check: ensure SQL starts with SELECT
+            if sql_query and not sql_query.upper().strip().startswith('SELECT'):
+                sql_query = "SELECT " + sql_query
+            
             # Apply validation and auto-correction
             if sql_query:
                 sql_query = self._validate_and_fix_sql(sql_query)
@@ -687,8 +697,13 @@ SELECT"""
             # Find the last occurrence of SELECT (the generated part)
             select_pos = response.rfind("SELECT")
             if select_pos == -1:
+                # Check if response looks like SQL without SELECT keyword
+                if "FROM" in response.upper() and any(keyword in response.upper() for keyword in ["JOIN", "WHERE", "GROUP", "ORDER", "LIMIT"]):
+                    # Add SELECT keyword to the beginning
+                    sql_query = "SELECT " + response.strip()
+                else:
                 return None
-            
+            else:
             sql_part = "SELECT" + response[select_pos + 6:]
             
             # Clean up the SQL
